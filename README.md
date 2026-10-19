@@ -56,7 +56,7 @@ Colour ratios, with the pair, use and result for each, are on the colour board.
 
 ## Run the coded prototype
 
-Open `prototype/index.html` in a browser, or use the GitHub Pages link below. It is one HTML file with no build step and walks the full journey: homepage, welcome, checklist (with a working reminder sheet), details form with validation, verification states, and the first-investment screen with a working amount stepper.
+Download the repository (or just `prototype/index.html`) and open it in a browser. It is one HTML file with no build step and walks the full journey: homepage, welcome, checklist (with a working reminder sheet), details form with validation, verification states, and the first-investment screen with a working amount stepper.
 
 The screenshots in `docs/screenshots` are the final visual design. The coded prototype follows the same flow, palette and copy.
 
@@ -66,7 +66,7 @@ The design was produced in Claude Design (Anthropic's canvas tool). The `.dc.htm
 
 ## Links
 
-* Interactive prototype (GitHub Pages): see the repository description
+* Interactive prototype: open `prototype/index.html` locally (no build step, no server needed)
 * Figma file: https://www.figma.com/design/5lZrVxoaOxaNfn3PoVT6KZ (an earlier iteration of the same journey; the screenshots here are the final visuals)
 
 ## Assumptions to confirm
