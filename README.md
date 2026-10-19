@@ -66,7 +66,7 @@ The design was produced in Claude Design (Anthropic's canvas tool). The `.dc.htm
 
 ## Links
 
-* Interactive prototype: open `prototype/index.html` locally (no build step, no server needed)
+* Interactive prototype (live): https://sprout-prototype-blue.vercel.app (also runs locally from `prototype/index.html`, no build step)
 * Figma file: https://www.figma.com/design/5lZrVxoaOxaNfn3PoVT6KZ (an earlier iteration of the same journey; the screenshots here are the final visuals)
 
 ## Assumptions to confirm
