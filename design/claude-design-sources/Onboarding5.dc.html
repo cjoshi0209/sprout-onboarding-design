@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Onboarding 5: Start small</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}
+.cta:hover{background:#14502F}
+.ghost:hover,.back:hover,.stp:hover{background:#E6F2EA}
+.cta:focus-visible,.back:focus-visible,.ghost:focus-visible,.stp:focus-visible,.chip:focus-visible,.linkbtn:focus-visible{outline:3px solid #1A4FB8;outline-offset:3px}
+.amt:focus{outline:3px solid #1A4FB8;outline-offset:1px;border-color:#1A4FB8 !important}
+</style>
+</helmet>
+<div style="position:relative;width:390px;height:844px;overflow:hidden;background:#FBF9F4;color:#12241A;font-family:'Plus Jakarta Sans','Noto Sans Devanagari',system-ui,sans-serif">
+
+  <div style="position:absolute;left:0;right:0;top:0;bottom:84px;overflow-y:auto;box-sizing:border-box;padding:0 20px 24px;display:flex;flex-direction:column;gap:14px">
+
+    <div style="display:flex;align-items:center;gap:6px;min-height:56px;margin-left:-8px">
+      <sc-if value="{{isEntry}}" hint-placeholder-val="{{ true }}">
+        <a class="back" href="Onboarding4.dc.html" aria-label="Back" style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="#12241A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </a>
+      </sc-if>
+      <sc-if value="{{isReview}}" hint-placeholder-val="{{ false }}">
+        <button class="back" type="button" onClick="{{toEntry}}" aria-label="Back to amount" style="width:44px;height:44px;border-radius:50%;border:0;background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="#12241A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </button>
+      </sc-if>
+      <sc-if value="{{isDone}}" hint-placeholder-val="{{ false }}"><span style="width:8px"></span></sc-if>
+      <span style="font-size:19px;font-weight:800;letter-spacing:-0.01em">Sprout</span>
+      <span style="margin-left:auto;font-size:14px;font-weight:600;color:#4A5B51">5 of 5</span>
+    </div>
+
+    <div role="img" aria-label="Step 5 of 5" style="display:flex;gap:6px">
+      <i style="flex:1;height:4px;border-radius:2px;background:#1E6B46"></i><i style="flex:1;height:4px;border-radius:2px;background:#1E6B46"></i><i style="flex:1;height:4px;border-radius:2px;background:#1E6B46"></i><i style="flex:1;height:4px;border-radius:2px;background:#1E6B46"></i><i style="flex:1;height:4px;border-radius:2px;background:#1E6B46"></i>
+    </div>
+
+    <!-- ENTRY -->
+    <sc-if value="{{isEntry}}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:2px">
+          <span style="font-size:13px;font-weight:700;color:#1E6B46;letter-spacing:0.06em;text-transform:uppercase">Your first investment</span>
+          <h1 style="margin:0;font-size:29px;line-height:1.2;font-weight:800;letter-spacing:-0.02em;text-wrap:balance">Start small. ₹100 is enough.</h1>
+          <p style="margin:0;font-size:16px;line-height:1.6;color:#4A5B51">Choose any amount from ₹100.</p>
+        </div>
+
+        <div style="display:flex;gap:14px;align-items:center;background:#FFFFFF;border:1px solid #D8E0DA;border-radius:20px;padding:14px 16px">
+          <div style="flex:none;width:44px;height:44px;border-radius:14px;background:#E6F2EA;display:flex;align-items:center;justify-content:center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E6B46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18l5-6 4 3 7-9"></path><path d="M4 21h16"></path></svg>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <span style="font-size:12px;font-weight:700;color:#1E6B46;letter-spacing:0.05em;text-transform:uppercase">Sample fund</span>
+            <strong style="font-size:17px;line-height:1.4">Nifty 50 Index Fund</strong>
+            <span style="font-size:14px;line-height:1.5;color:#4A5B51">Follows India’s 50 largest listed companies. Its value moves with the market.</span>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <label for="amt" style="font-size:15px;font-weight:700">Amount to invest (₹)</label>
+          <div style="display:flex;align-items:center;gap:10px">
+            <button class="stp" type="button" aria-label="Decrease amount by ₹50" onClick="{{minus}}" style="flex:none;width:52px;height:52px;border-radius:50%;border:2px solid #1E6B46;background:#FFFFFF;color:#1E6B46;font:700 26px/1 'Plus Jakarta Sans',system-ui,sans-serif;cursor:pointer">−</button>
+            <input class="amt" id="amt" value="{{raw}}" onInput="{{onAmt}}" inputMode="numeric" aria-invalid="{{tooLow}}" aria-describedby="amt-help" style="flex:1;min-width:0;box-sizing:border-box;height:60px;padding:0 12px;text-align:center;border:2px solid {{amtBorder}};border-radius:16px;background:#FFFFFF;color:#12241A;font:800 30px/1.2 'Plus Jakarta Sans','Noto Sans Devanagari',system-ui,sans-serif">
+            <button class="stp" type="button" aria-label="Increase amount by ₹50" onClick="{{plus}}" style="flex:none;width:52px;height:52px;border-radius:50%;border:2px solid #1E6B46;background:#FFFFFF;color:#1E6B46;font:700 26px/1 'Plus Jakarta Sans',system-ui,sans-serif;cursor:pointer">+</button>
+          </div>
+          <sc-if value="{{tooLow}}" hint-placeholder-val="{{ false }}">
+            <span role="alert" style="font-size:14px;line-height:1.5;color:#B3261E;font-weight:600">The minimum is ₹100. Please enter ₹100 or more.</span>
+          </sc-if>
+          <span id="amt-help" style="font-size:14px;line-height:1.55;color:#4A5B51">Minimum ₹100. You pick the amount.</span>
+        </div>
+
+        <div role="group" aria-label="Quick amounts" style="display:flex;flex-wrap:wrap;gap:8px">
+          <sc-for list="{{chips}}" as="c" hint-placeholder-count="3">
+            <button class="chip" type="button" aria-pressed="{{c.on}}" onClick="{{c.pick}}" style="min-height:44px;padding:8px 20px;border-radius:999px;cursor:pointer;border:2px solid {{c.border}};background:{{c.bg}};color:{{c.ink}};font:700 16px/1.3 'Plus Jakarta Sans','Noto Sans Devanagari',system-ui,sans-serif">{{c.label}}</button>
+          </sc-for>
+        </div>
+
+        <div role="note" style="display:flex;gap:12px;align-items:flex-start;background:#FFF1CC;color:#6B4200;border-radius:16px;padding:14px 16px">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="flex:none;margin-top:1px"><circle cx="12" cy="12" r="10" stroke="#6B4200" stroke-width="2"></circle><path d="M12 11v6M12 7.5v.5" stroke="#6B4200" stroke-width="2.4" stroke-linecap="round"></path></svg>
+          <p style="margin:0;font-size:15px;line-height:1.55"><strong>Before you invest:</strong> the value can go up and down, and you may get back less than you put in. Only invest what you are comfortable setting aside.</p>
+        </div>
+
+        <sc-if value="{{canReview}}" hint-placeholder-val="{{ true }}">
+          <button class="cta" type="button" onClick="{{toReview}}" style="min-height:56px;padding:14px 24px;border-radius:999px;border:0;background:#1E6B46;color:#FFFFFF;font:700 17px/1.4 'Plus Jakarta Sans','Noto Sans Devanagari',system-ui,sans-serif;cursor:pointer">Review ₹{{amtText}}</button>
+        </sc-if>
+        <sc-if value="{{tooLow}}" hint-placeholder-val="{{ false }}">
+          <button type="button" disabled style="min-height:56px;padding:14px 24px;border-radius:999px;border:0;background:#E3E8E5;color:#4A5B51;font:700 17px/1.4 'Plus Jakarta Sans','Noto Sans Devanagari',system-ui,sans-serif;cursor:not-allowed">Review</button>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <!-- REVIEW -->
+    <sc-if value="{{isReview}}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:18px;margin-top:6px">
+        <h1 style="margin:0;font-size:29px;line-height:1.2;font-weight:800;letter-spacing:-0.02em">Review your investment</h1>
+        <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:20px;display:flex;flex-direction:column">
+          <div style="display:flex;justify-content:space-between;gap:12px;padding:16px 18px;border-bottom:1px solid #D8E0DA"><span style="color:#4A5B51">Fund</span><strong>Nifty 50 Index Fund</strong></div>
+          <div style="display:flex;justify-content:space-between;gap:12px;padding:16px 18px"><span style="color:#4A5B51">Amount</span><strong style="font-size:20px">₹{{amtText}}</strong></div>
+        </div>
+        <p style="margin:0;font-size:14px;line-height:1.55;color:#4A5B51">Nothing is charged until you confirm on the next step. You can go back and change the amount.</p>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <button class="cta" type="button" onClick="{{toDone}}" style="min-height:56px;padding:14px 24px;border-radius:999px;border:0;background:#1E6B46;color:#FFFFFF;font:700 17px/1.4 'Plus Jakarta Sans','Noto Sans Devanagari',system-ui,sans-serif;cursor:pointer">Confirm and continue</button>
+          <button class="ghost" type="button" onClick="{{toEntry}}" style="min-height:56px;padding:14px 24px;border-radius:999px;border:2px solid #1E6B46;background:transparent;color:#1E6B46;font:700 17px/1.4 'Plus Jakarta Sans','Noto Sans Devanagari',system-ui,sans-serif;cursor:pointer">Change amount</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- DONE -->
+    <sc-if value="{{isDone}}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;margin-top:6px">
+        <dc-import name="Mascot" pose="done" size="120" hint-size="120px,120px"></dc-import>
+        <h1 style="margin:0;font-size:29px;line-height:1.2;font-weight:800;letter-spacing:-0.02em;text-wrap:balance">You’ve got this. Your first step is in.</h1>
+        <p style="margin:0;font-size:16px;line-height:1.6;color:#4A5B51">We will update you here and by message once your investment is processed.</p>
+        <a class="cta" href="HomeMobile.dc.html" style="align-self:stretch;display:flex;align-items:center;justify-content:center;min-height:56px;padding:14px 24px;border-radius:999px;background:#1E6B46;color:#FFFFFF;font-size:17px;font-weight:700;text-decoration:none">Go to my home</a>
+        <div style="align-self:stretch;border-top:1px solid #D8E0DA;padding-top:6px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
+          <span style="font-size:14px;line-height:1.5;color:#4A5B51">Know someone just starting out?</span>
+          <button class="linkbtn" type="button" style="min-height:44px;padding:8px 4px;border:0;background:transparent;color:#1E6B46;font:700 14px/1.4 'Plus Jakarta Sans','Noto Sans Devanagari',system-ui,sans-serif;text-decoration:underline;cursor:pointer">Share Sprout</button>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+
+  <div style="position:absolute;left:0;right:0;bottom:0">
+    <dc-import name="Disclaimer" hint-size="100%,84px"></dc-import>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { pane: 'entry', raw: '100' }; }
+  renderVals() {
+    const s = this.state;
+    const n = parseInt(s.raw, 10) || 0;
+    const ok = n >= 100;
+    const set = (v) => this.setState({ raw: String(v) });
+    return {
+      isEntry: s.pane === 'entry', isReview: s.pane === 'review', isDone: s.pane === 'done',
+      raw: s.raw, amtText: n.toLocaleString('en-IN'),
+      tooLow: !ok, canReview: ok,
+      amtBorder: ok ? '#6F8176' : '#B3261E',
+      onAmt: (e) => this.setState({ raw: e.target.value.replace(/\D/g, '').slice(0, 7) }),
+      minus: () => set(Math.max(100, n - 50)),
+      plus: () => set(n + 50),
+      chips: [100, 250, 500].map((v) => ({
+        label: '₹' + v, on: n === v,
+        bg: n === v ? '#E6F2EA' : '#FFFFFF', ink: n === v ? '#14502F' : '#12241A', border: n === v ? '#1E6B46' : '#6F8176',
+        pick: () => set(v)
+      })),
+      toReview: () => this.setState({ pane: 'review' }),
+      toEntry: () => this.setState({ pane: 'entry' }),
+      toDone: () => this.setState({ pane: 'done' })
+    };
+  }
+}
+</script>
+</body>
+</html>

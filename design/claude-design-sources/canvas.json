@@ -1,0 +1,39 @@
+{
+  "v": 3,
+  "createdOnFiles": { "v": 1, "at": "2026-10-19T08:00:00Z" },
+  "title": "Sprout: onboarding design",
+  "launch": { "view": "canvas" },
+  "boards": {
+    "Main.dc.html": { "x": 0, "y": 0, "w": 1440, "h": 900, "title": "Cover and brief" },
+    "HomeMobile.dc.html": { "x": 0, "y": 1260, "w": 390, "h": 844, "title": "Homepage, mobile", "is_interactive": true },
+    "Onboarding1.dc.html": { "x": 470, "y": 1260, "w": 390, "h": 844, "title": "1 Welcome", "is_interactive": true },
+    "Onboarding2.dc.html": { "x": 940, "y": 1260, "w": 390, "h": 844, "title": "2 Preparation checklist", "is_interactive": true },
+    "Onboarding3.dc.html": { "x": 1410, "y": 1260, "w": 390, "h": 844, "title": "3 Your details", "is_interactive": true },
+    "Onboarding4.dc.html": { "x": 1880, "y": 1260, "w": 390, "h": 844, "title": "4 Verification in progress", "is_interactive": true },
+    "Onboarding5.dc.html": { "x": 2350, "y": 1260, "w": 390, "h": 844, "title": "5 Start small", "is_interactive": true },
+    "HomeDesktop.dc.html": { "x": 0, "y": 2470, "w": 1440, "h": 1040, "title": "Homepage, desktop", "expand": "fill", "is_interactive": true },
+    "States.dc.html": { "x": 0, "y": 3870, "w": 2230, "h": 1000, "title": "Screen 4 states" },
+    "MascotSheet.dc.html": { "x": 0, "y": 5250, "w": 1200, "h": 1340, "title": "Mascot sheet" },
+    "Colour.dc.html": { "x": 1280, "y": 5250, "w": 1200, "h": 1900, "title": "Colour and contrast" },
+    "TypeComponents.dc.html": { "x": 2560, "y": 5250, "w": 1200, "h": 2180, "title": "Type and components" },
+    "Mascot.dc.html": { "x": 0, "y": 6870, "w": 160, "h": 160, "title": "Component: mascot" },
+    "Disclaimer.dc.html": { "x": 240, "y": 6870, "w": 390, "h": 90, "title": "Component: disclaimer bar" },
+    "VerifyState.dc.html": { "x": 710, "y": 6870, "w": 390, "h": 800, "title": "Component: verification state" },
+    "Rationale1.dc.html": { "x": 0, "y": 8060, "w": 1240, "h": 1754, "title": "Rationale, page 1", "print": "flow", "paper": "a4" },
+    "Rationale2.dc.html": { "x": 1320, "y": 8060, "w": 1240, "h": 1754, "title": "Rationale, page 2", "print": "flow", "paper": "a4" }
+  },
+  "order": [
+    "Main.dc.html", "HomeMobile.dc.html", "Onboarding1.dc.html", "Onboarding2.dc.html", "Onboarding3.dc.html", "Onboarding4.dc.html", "Onboarding5.dc.html",
+    "HomeDesktop.dc.html", "States.dc.html", "MascotSheet.dc.html", "Colour.dc.html", "TypeComponents.dc.html",
+    "Mascot.dc.html", "Disclaimer.dc.html", "VerifyState.dc.html", "Rationale1.dc.html", "Rationale2.dc.html"
+  ],
+  "notes": {
+    "n-journey": { "x": 0, "y": 1010, "text": "The journey: homepage to first investment", "kind": "title1", "maxW": 2740 },
+    "n-desktop": { "x": 0, "y": 2230, "text": "Homepage on desktop", "kind": "title1", "maxW": 1440 },
+    "n-states": { "x": 0, "y": 3630, "text": "Screen 4: every state", "kind": "title1", "maxW": 2230 },
+    "n-specs": { "x": 0, "y": 5010, "text": "Mascot, colour, type and components", "kind": "title1", "maxW": 3760 },
+    "n-comps": { "x": 0, "y": 6630, "text": "Reusable components", "kind": "title1", "maxW": 1100 },
+    "n-rationale": { "x": 0, "y": 7820, "text": "Rationale", "kind": "title1", "maxW": 2560 }
+  },
+  "designSystems": []
+}

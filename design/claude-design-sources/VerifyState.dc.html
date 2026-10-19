@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Verification state</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}
+.vs-cta:hover{background:#14502F}
+.vs-ghost:hover{background:#E6F2EA}
+.vs-cta:focus-visible,.vs-ghost:focus-visible{outline:3px solid #1A4FB8;outline-offset:3px}
+.vs-spin{display:inline-block;width:14px;height:14px;border-radius:50%;border:3px solid #E6F2EA;border-top-color:#1E6B46;border-right-color:#1E6B46;box-sizing:border-box;animation:vsSpin 1s linear infinite}
+.vs-skel{display:block;height:20px;border-radius:8px;background:linear-gradient(90deg,#E8EDE9 25%,#F4F7F5 50%,#E8EDE9 75%);background-size:200% 100%;animation:vsShim 1.4s linear infinite}
+@keyframes vsSpin{to{transform:rotate(360deg)}}
+@keyframes vsShim{to{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.vs-spin,.vs-skel{animation:none}}
+</style>
+</helmet>
+<div style="box-sizing:border-box;padding:{{pad}};display:flex;flex-direction:column;gap:16px;background:#FBF9F4;color:#12241A;font-family:'Plus Jakarta Sans','Noto Sans Devanagari',system-ui,sans-serif">
+
+  <div style="display:flex;justify-content:center;padding:2px 0 4px">
+    <dc-import name="Mascot" pose="{{pose}}" size="104" hint-size="104px,104px"></dc-import>
+  </div>
+
+  <sc-if value="{{isProgress}}" hint-placeholder-val="{{ true }}">
+    <div><span role="status" style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:#E6F2EA;color:#14502F;font-size:14px;font-weight:700"><span class="vs-spin"></span>In progress · step 2 of 4</span></div>
+  </sc-if>
+  <sc-if value="{{isSlow}}" hint-placeholder-val="{{ false }}">
+    <div><span role="status" style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:#FFF1CC;color:#6B4200;font-size:14px;font-weight:700"><span class="vs-spin"></span>Taking longer than usual</span></div>
+  </sc-if>
+  <sc-if value="{{isVerified}}" hint-placeholder-val="{{ false }}">
+    <div><span role="status" style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:#1E6B46;color:#FFFFFF;font-size:14px;font-weight:700"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>Verified</span></div>
+  </sc-if>
+  <sc-if value="{{isError}}" hint-placeholder-val="{{ false }}">
+    <div role="alert" style="display:flex;gap:12px;align-items:flex-start;background:#FDECEA;border-radius:16px;padding:14px 16px;color:#B3261E">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="flex:none;margin-top:1px"><circle cx="12" cy="12" r="10" stroke="#B3261E" stroke-width="2"></circle><path d="M12 7v6M12 16.5v.5" stroke="#B3261E" stroke-width="2.4" stroke-linecap="round"></path></svg>
+      <strong style="font-size:15px;line-height:1.5">We could not match your PAN with the name you entered.</strong>
+    </div>
+  </sc-if>
+
+  <h1 style="margin:0;font-size:29px;line-height:1.2;font-weight:800;letter-spacing:-0.02em;text-wrap:balance">{{title}}</h1>
+  <p style="margin:0;font-size:16px;line-height:1.6;color:#4A5B51">{{body}}</p>
+
+  <sc-if value="{{isLoading}}" hint-placeholder-val="{{ false }}">
+    <div aria-hidden="true" style="display:flex;flex-direction:column;gap:12px"><i class="vs-skel" style="width:62%"></i><i class="vs-skel"></i><i class="vs-skel" style="width:80%"></i><i class="vs-skel" style="width:46%"></i></div>
+  </sc-if>
+
+  <sc-if value="{{showSteps}}" hint-placeholder-val="{{ true }}">
+    <ol style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column" aria-label="Verification steps">
+      <sc-for list="{{steps}}" as="st" hint-placeholder-count="4">
+        <li style="display:flex;gap:14px;align-items:flex-start;padding:10px 0">
+          <span style="flex:none;width:28px;height:28px;box-sizing:border-box;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;border:2px solid {{st.ring}};background:{{st.fill}};color:{{st.ink}}">
+            <sc-if value="{{st.isDone}}" hint-placeholder-val="{{ false }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></sc-if>
+            <sc-if value="{{st.isNow}}" hint-placeholder-val="{{ false }}"><span class="vs-spin" style="width:12px;height:12px"></span></sc-if>
+            <sc-if value="{{st.isWait}}" hint-placeholder-val="{{ false }}">{{st.n}}</sc-if>
+          </span>
+          <span style="display:flex;flex-direction:column"><strong style="font-size:16px;line-height:1.5">{{st.label}}</strong><span style="font-size:14px;line-height:1.5;color:#4A5B51">{{st.status}}</span></span>
+        </li>
+      </sc-for>
+    </ol>
+  </sc-if>
+
+  <sc-if value="{{isProgress}}" hint-placeholder-val="{{ true }}">
+    <p style="margin:0;font-size:14px;line-height:1.5;color:#4A5B51">Started 1 min ago · Last checked just now</p>
+  </sc-if>
+
+  <sc-if value="{{showNotify}}" hint-placeholder-val="{{ true }}">
+    <button class="vs-ghost" type="button" onClick="{{turnOn}}" style="min-height:56px;padding:14px 24px;border-radius:999px;border:2px solid #1E6B46;background:transparent;color:#1E6B46;font:700 17px/1.4 'Plus Jakarta Sans','Noto Sans Devanagari',system-ui,sans-serif;cursor:pointer">Notify me when it is done</button>
+  </sc-if>
+  <sc-if value="{{notified}}" hint-placeholder-val="{{ false }}">
+    <div role="status" style="display:flex;gap:12px;align-items:flex-start;background:#E6F2EA;border-radius:16px;padding:14px 16px">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="flex:none;margin-top:1px"><circle cx="12" cy="12" r="10" fill="#1E6B46"></circle><path d="M7.5 12.5l3 3 6-6.5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      <span style="font-size:15px;line-height:1.55">Done. We will send you an SMS and an app notification as soon as there is news. You can close the app.</span>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{isError}}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <a class="vs-cta" href="Onboarding3.dc.html" style="display:flex;align-items:center;justify-content:center;min-height:56px;padding:14px 24px;border-radius:999px;background:#1E6B46;color:#FFFFFF;font-size:17px;font-weight:700;text-decoration:none">Edit my details</a>
+      <button class="vs-ghost" type="button" style="min-height:56px;padding:14px 24px;border-radius:999px;border:2px solid #1E6B46;background:transparent;color:#1E6B46;font:700 17px/1.4 'Plus Jakarta Sans','Noto Sans Devanagari',system-ui,sans-serif;cursor:pointer">Talk to support</button>
+    </div>
+  </sc-if>
+  <sc-if value="{{isEmpty}}" hint-placeholder-val="{{ false }}">
+    <a class="vs-cta" href="Onboarding3.dc.html" style="display:flex;align-items:center;justify-content:center;min-height:56px;padding:14px 24px;border-radius:999px;background:#1E6B46;color:#FFFFFF;font-size:17px;font-weight:700;text-decoration:none">Add my details</a>
+  </sc-if>
+  <sc-if value="{{isVerified}}" hint-placeholder-val="{{ false }}">
+    <a class="vs-cta" href="Onboarding5.dc.html" style="display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:14px 24px;border-radius:999px;background:#1E6B46;color:#FFFFFF;font-size:17px;font-weight:700;text-decoration:none">Continue<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"state":{"editor":"enum","default":"progress","options":["loading","progress","slow","error","empty","verified"]},"pad":{"editor":"text","default":"20px"},"$preview":{"width":390,"height":800}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { notified: false }; }
+  renderVals() {
+    const st = this.props.state || 'progress';
+    const copy = {
+      loading: ['Getting your latest status…', 'One moment. Your details are saved.'],
+      progress: ['We are checking your details', 'The app is working. Checks like this usually take 2 to 5 minutes, and sometimes a few hours. You do not need to stay on this screen.'],
+      slow: ['Still working. This one needs a little more time.', 'Some checks take a few hours, and rarely up to 24. Nothing is wrong, and your details are saved. There is nothing you need to do.'],
+      error: ['Let us fix that together', 'This usually happens when the name differs slightly from the PAN card, for example a missing middle name. Your other details are fine.'],
+      empty: ['Nothing is being checked yet', 'Once you add your details, you can follow the progress here. It takes about 2 minutes to fill in.'],
+      verified: ['You are verified. Nicely done.', 'That was the longest part. Next, choose how much to start with.']
+    }[st];
+    const pose = { loading: 'sprout', progress: 'grow', slow: 'grow', error: 'sprout', empty: 'seed', verified: 'done' }[st];
+    const labels = ['Details received', 'Checking your PAN with the Income Tax Department', 'Confirming your Aadhaar with a one-time code', 'Matching your bank account'];
+    const active = 1;
+    const steps = labels.map((l, i) => {
+      const done = i < active, now = i === active;
+      return {
+        label: l, n: String(i + 1),
+        status: done ? 'Done' : (now ? 'Working on it' : 'Waiting'),
+        isDone: done, isNow: now, isWait: !done && !now,
+        ring: done || now ? '#1E6B46' : '#6F8176',
+        fill: done ? '#1E6B46' : '#FFFFFF',
+        ink: '#12241A'
+      };
+    });
+    const pad = this.props.pad === undefined || this.props.pad === null || this.props.pad === '' ? '20px' : String(this.props.pad);
+    return {
+      pad, pose, title: copy[0], body: copy[1], steps,
+      isLoading: st === 'loading', isProgress: st === 'progress', isSlow: st === 'slow',
+      isError: st === 'error', isEmpty: st === 'empty', isVerified: st === 'verified',
+      showSteps: st === 'progress' || st === 'slow',
+      showNotify: (st === 'progress' || st === 'slow') && !this.state.notified,
+      notified: (st === 'progress' || st === 'slow') && this.state.notified,
+      turnOn: () => this.setState({ notified: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sprout: start investing with ₹100</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta name="description" content="Sprout helps first-time investors in India start with as little as ₹100, one small step at a time.">
+<style>
+:root{
+  --bg:#FBF9F4; --surface:#FFFFFF; --tint:#E6F2EA;
+  --ink:#12241A; --muted:#4A5B51;
+  --primary:#1E6B46; --primary-dark:#14502F; --leaf:#2E8B50; --sun:#F2B84B;
+  --line:#6F8176; --hair:#D8E0DA;
+  --error:#B3261E; --error-bg:#FDECEA; --warn:#6B4200; --warn-bg:#FFF1CC;
+  --focus:#1A4FB8;
+  --r:16px; --tap:48px;
+  --font:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI","Noto Sans","Noto Sans Devanagari",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--font);padding-bottom:84px}
+h1,h2,h3,p{margin:0}
+h1{font-size:1.75rem;line-height:1.3;font-weight:700;text-wrap:balance}
+h2{font-size:1.25rem;line-height:1.4;font-weight:700}
+h3{font-size:1rem;line-height:1.5;font-weight:700}
+.muted{color:var(--muted)}
+.small{font-size:.875rem;line-height:1.5}
+a{color:var(--primary)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:6px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:12px 16px;border-radius:8px;z-index:100}
+.skip:focus{left:8px}
+
+/* shell */
+.top{display:flex;align-items:center;gap:8px;padding:8px 12px;max-width:1080px;margin:0 auto;min-height:60px}
+.brand{display:flex;align-items:center;gap:8px;font-weight:700;font-size:1.125rem;text-decoration:none;color:var(--ink);min-height:44px}
+.brand svg{width:32px;height:32px}
+.back{min-width:44px;min-height:44px;border:0;background:transparent;border-radius:50%;display:grid;place-items:center;cursor:pointer;color:var(--ink)}
+.back[hidden]{display:none}
+.stepper{margin-left:auto;font-size:.875rem;color:var(--muted)}
+.wrap{max-width:480px;margin:0 auto;padding:8px 20px 24px}
+.screen[hidden]{display:none}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:var(--tap);min-width:44px;padding:12px 24px;border-radius:999px;border:2px solid var(--primary);background:var(--primary);color:#fff;font:700 1rem/1.4 var(--font);cursor:pointer;text-decoration:none;text-align:center}
+.btn:hover{background:var(--primary-dark);border-color:var(--primary-dark)}
+.btn.ghost{background:transparent;color:var(--primary)}
+.btn.ghost:hover{background:var(--tint)}
+.btn.block{display:flex;width:100%}
+.btn[disabled]{opacity:1;background:#E3E8E5;border-color:#E3E8E5;color:#4A5B51;cursor:not-allowed}
+.stack{display:grid;gap:12px}
+.link{background:none;border:0;color:var(--primary);font:600 1rem/1.4 var(--font);text-decoration:underline;min-height:44px;padding:8px 4px;cursor:pointer}
+
+/* cards, lists */
+.card{background:var(--surface);border:1px solid var(--hair);border-radius:var(--r);padding:16px}
+.callout{background:var(--tint);border-radius:var(--r);padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
+.callout.warn{background:var(--warn-bg);color:var(--warn)}
+.callout.err{background:var(--error-bg);color:var(--error)}
+.callout .ico{flex:none;width:24px;height:24px}
+.hero-mascot{display:grid;place-items:center;margin:8px 0 16px}
+.hero-mascot svg{width:112px;height:112px}
+.eyebrow{font-size:.875rem;font-weight:700;color:var(--primary);letter-spacing:.02em}
+.lede{font-size:1.0625rem;color:var(--muted)}
+
+/* checklist */
+.check{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:var(--r);background:var(--surface);border:1px solid var(--hair)}
+.check input{width:24px;height:24px;margin:10px 0 0;accent-color:var(--primary);flex:none}
+.check label{flex:1;display:block;min-height:44px;cursor:pointer}
+.check label b{display:block}
+.tapbox{display:flex;align-items:flex-start;gap:12px}
+
+/* fields */
+.field{display:grid;gap:6px}
+.field label{font-weight:700}
+.field .why{font-size:.875rem;color:var(--muted);line-height:1.5}
+.input{width:100%;min-height:52px;padding:12px 14px;border:2px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);font:400 1.0625rem/1.4 var(--font)}
+.input:focus{outline:3px solid var(--focus);outline-offset:1px;border-color:var(--focus)}
+.input[aria-invalid="true"]{border-color:var(--error)}
+.err-msg{color:var(--error);font-size:.875rem;line-height:1.5;display:none}
+.input[aria-invalid="true"]~.err-msg{display:block}
+.phone{display:flex;gap:8px}
+.phone .cc{flex:none;display:grid;place-items:center;min-width:64px;border:2px solid var(--line);border-radius:12px;background:var(--tint);font-weight:700}
+.progress{display:flex;gap:6px;margin:4px 0 16px}
+.progress i{flex:1;height:6px;border-radius:3px;background:var(--hair)}
+.progress i.on{background:var(--primary)}
+
+/* verification */
+.pill{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:var(--tint);color:var(--primary-dark);font-weight:700;font-size:.9375rem}
+.pill.warn{background:var(--warn-bg);color:var(--warn)}
+.pill.ok{background:var(--primary);color:#fff}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.steps li{display:flex;gap:12px;align-items:flex-start;padding:10px 0}
+.dot{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;border:2px solid var(--line);background:#fff;font-size:.875rem;font-weight:700}
+.steps .done .dot{background:var(--primary);border-color:var(--primary);color:#fff}
+.steps .now .dot{border-color:var(--primary)}
+.spin{width:14px;height:14px;border-radius:50%;border:3px solid var(--tint);border-top-color:var(--primary);animation:spin 1s linear infinite}
+.skel{display:grid;gap:12px}
+.skel i{display:block;height:20px;border-radius:8px;background:linear-gradient(90deg,#E8EDE9 25%,#F4F7F5 50%,#E8EDE9 75%);background-size:200% 100%;animation:shim 1.4s linear infinite}
+.protostate{margin-top:24px;border:2px dashed var(--line);border-radius:var(--r);padding:12px}
+.protostate legend{font-size:.875rem;font-weight:700;padding:0 6px;color:var(--muted)}
+.protostate .row{display:flex;flex-wrap:wrap;gap:8px}
+.protostate button{min-height:44px;padding:8px 14px;border-radius:999px;border:2px solid var(--line);background:#fff;font:600 .875rem/1.3 var(--font);color:var(--ink);cursor:pointer}
+.protostate button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+
+/* amount */
+.amount{display:flex;align-items:center;gap:8px}
+.amount .step{flex:none;width:48px;height:48px;border-radius:50%;border:2px solid var(--primary);background:#fff;color:var(--primary);font:700 1.5rem/1 var(--font);cursor:pointer}
+.amount .input{text-align:center;font-size:1.75rem;font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:44px;padding:8px 18px;border-radius:999px;border:2px solid var(--line);background:#fff;font:700 1rem/1.3 var(--font);color:var(--ink);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--tint);border-color:var(--primary);color:var(--primary-dark)}
+
+/* home */
+.hero{max-width:1080px;margin:0 auto;padding:8px 20px 24px;display:grid;gap:24px}
+.hero h1{font-size:2rem}
+.explain{max-width:1080px;margin:0 auto;padding:8px 20px 32px;display:grid;gap:12px}
+.explain .grid{display:grid;gap:12px}
+.num{width:36px;height:36px;border-radius:50%;background:var(--tint);color:var(--primary-dark);display:grid;place-items:center;font-weight:700;margin-bottom:8px}
+.referral{margin-top:16px;padding-top:12px;border-top:1px solid var(--hair);font-size:.875rem}
+
+/* disclaimer, always visible */
+.disclaimer{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:#fff;font-size:.75rem;line-height:1.5;padding:10px 16px;z-index:50}
+.disclaimer p{max-width:1080px;margin:0 auto}
+.toast{position:fixed;left:16px;right:16px;bottom:96px;max-width:440px;margin:0 auto;background:var(--ink);color:#fff;padding:14px 16px;border-radius:12px;z-index:60}
+.toast[hidden]{display:none}
+
+/* mascot motion: CSS only, ~1 KB */
+.sway-r,.sway-l{animation:sway 4.5s ease-in-out infinite alternate}
+.sway-l{animation-delay:-1.2s;animation-direction:alternate-reverse}
+.grow{transform-origin:60px 80px;animation:grow .9s cubic-bezier(.2,.8,.2,1) both}
+.breathe{transform-origin:60px 80px;animation:breathe 3.2s ease-in-out infinite}
+@keyframes sway{from{transform:rotate(-4deg)}to{transform:rotate(5deg)}}
+@keyframes grow{from{transform:scale(.4)}to{transform:scale(1)}}
+@keyframes breathe{50%{transform:scale(1.03)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes shim{to{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+@media (min-width:860px){
+  body{font-size:1.0625rem}
+  .hero{grid-template-columns:1.15fr .85fr;align-items:center;padding:56px 24px 56px;gap:64px}
+  .hero h1{font-size:3rem;line-height:1.2}
+  .hero .hero-mascot{margin:0}
+  .hero .hero-mascot svg{width:340px;height:340px}
+  .explain .grid{grid-template-columns:repeat(3,1fr);gap:20px}
+  .explain{padding-bottom:56px}
+  .wrap{padding-top:24px}
+  .onb .wrap{background:var(--surface);border:1px solid var(--hair);border-radius:24px;margin-top:16px;padding:32px 36px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <button class="back" id="back" aria-label="Go back" hidden>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+  </button>
+  <a class="brand" href="#home" aria-label="Sprout home"><span id="logo"></span>Sprout</a>
+  <span class="stepper" id="stepper" aria-live="polite"></span>
+</header>
+
+<main id="main" tabindex="-1">
+
+<!-- HOME (screen 0) -->
+<section class="screen" id="s-home" aria-labelledby="h-home">
+  <div class="hero">
+    <div>
+      <p class="eyebrow">For first-time investors</p>
+      <h1 id="h-home" tabindex="-1">Start investing with just ₹100. One small step at a time.</h1>
+      <p class="lede" style="margin-top:12px">Sprout helps you learn by doing. You choose how much to invest, and you set the pace.</p>
+      <div style="margin-top:24px;max-width:340px">
+        <a class="btn block" href="#1" id="cta">Get started</a>
+        <p class="small muted" style="margin-top:12px">Takes about 10 minutes. Keep your PAN, Aadhaar and bank details handy.</p>
+      </div>
+    </div>
+    <div class="hero-mascot" data-mascot="grow" role="img" aria-label="Sprout mark: a small green seedling with two leaves"></div>
+  </div>
+
+  <div class="explain">
+    <h2>How Sprout keeps you in control</h2>
+    <div class="grid">
+      <div class="card"><div class="num" aria-hidden="true">1</div><h3>Start small</h3><p class="muted">Your first investment can be as little as ₹100.</p></div>
+      <div class="card"><div class="num" aria-hidden="true">2</div><h3>You choose the amount</h3><p class="muted">Add more, add less, or skip a month. It is always your call.</p></div>
+      <div class="card"><div class="num" aria-hidden="true">3</div><h3>Learn as you go</h3><p class="muted">Short, plain-language notes explain each step before you take it.</p></div>
+    </div>
+    <p class="muted" style="margin-top:8px">It is normal to feel unsure at first. Sprout is built for exactly that.</p>
+  </div>
+</section>
+
+<!-- 1 WELCOME -->
+<section class="screen onb" id="s-1" aria-labelledby="h-1" hidden>
+  <div class="wrap stack" style="gap:20px">
+    <div class="hero-mascot" data-mascot="sprout" role="img" aria-label="Sprout mark: a seedling just breaking the soil"></div>
+    <div class="stack" style="gap:8px">
+      <h1 id="h-1" tabindex="-1">Welcome to Sprout. Let's set you up in about 10 minutes.</h1>
+      <p class="lede">To open your account we need to confirm who you are. Here is what you will need:</p>
+    </div>
+    <ul class="stack" style="list-style:none;padding:0;margin:0;gap:8px">
+      <li class="callout"><span class="ico" aria-hidden="true">🪪</span><span><b>Your PAN card</b> (the card or just the number)</span></li>
+      <li class="callout"><span class="ico" aria-hidden="true">📱</span><span><b>Your Aadhaar-linked mobile number</b> to receive an OTP</span></li>
+      <li class="callout"><span class="ico" aria-hidden="true">🏦</span><span><b>Your bank account details</b> (account number and IFSC)</span></li>
+    </ul>
+    <p class="small muted"><b>How long it takes:</b> about 10 minutes to fill in. Checking your details can take a little longer, and we will tell you how it is going.</p>
+    <a class="btn block" href="#2">Continue</a>
+  </div>
+</section>
+
+<!-- 2 CHECKLIST -->
+<section class="screen onb" id="s-2" aria-labelledby="h-2" hidden>
+  <div class="wrap stack" style="gap:20px">
+    <div class="stack" style="gap:8px">
+      <h1 id="h-2" tabindex="-1">Get these three things ready</h1>
+      <p class="lede">Tick each one off as you find it. Nothing is saved until you continue.</p>
+    </div>
+    <div class="stack" role="group" aria-label="Preparation checklist">
+      <div class="check"><input type="checkbox" id="c1"><label for="c1"><b>PAN card</b><span class="small muted">Your 10-character tax ID. The card or a photo of it is fine.</span></label></div>
+      <div class="check"><input type="checkbox" id="c2"><label for="c2"><b>Aadhaar and its linked mobile number</b><span class="small muted">We will send a one-time code (OTP) to that number.</span></label></div>
+      <div class="check"><input type="checkbox" id="c3"><label for="c3"><b>Bank account details</b><span class="small muted">Account number and IFSC. You will find both on a cheque book or in your banking app.</span></label></div>
+    </div>
+    <p class="small muted" id="ready-count" aria-live="polite">0 of 3 ready</p>
+    <div class="stack">
+      <a class="btn block" href="#3" id="ready">I'm ready</a>
+      <button class="btn ghost block" id="remind-open" aria-expanded="false" aria-controls="remind">Remind me later</button>
+    </div>
+    <div class="card stack" id="remind" hidden>
+      <fieldset style="border:0;padding:0;margin:0" class="stack">
+        <legend class="small" style="font-weight:700;margin-bottom:4px">When should we remind you?</legend>
+        <label class="tapbox" style="min-height:44px;align-items:center"><input type="radio" name="when" value="in 1 hour" checked style="width:22px;height:22px;accent-color:var(--primary)"> In 1 hour</label>
+        <label class="tapbox" style="min-height:44px;align-items:center"><input type="radio" name="when" value="tonight at 8 pm" style="width:22px;height:22px;accent-color:var(--primary)"> Tonight, 8 pm</label>
+        <label class="tapbox" style="min-height:44px;align-items:center"><input type="radio" name="when" value="tomorrow at 10 am" style="width:22px;height:22px;accent-color:var(--primary)"> Tomorrow, 10 am</label>
+      </fieldset>
+      <button class="btn block" id="remind-set">Set reminder</button>
+    </div>
+    <p class="callout" id="remind-done" role="status" hidden></p>
+  </div>
+</section>
+
+<!-- 3 IDENTITY -->
+<section class="screen onb" id="s-3" aria-labelledby="h-3" hidden>
+  <div class="wrap stack" style="gap:20px">
+    <div>
+      <div class="progress" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1" aria-label="Step 1 of 3: your details">
+        <i class="on"></i><i></i><i></i>
+      </div>
+      <p class="eyebrow">Step 1 of 3 · Your details</p>
+    </div>
+    <div class="stack" style="gap:8px">
+      <h1 id="h-3" tabindex="-1">Tell us who you are</h1>
+      <p class="lede">Four quick details. We explain why under each one.</p>
+    </div>
+    <form id="idform" class="stack" style="gap:20px" novalidate>
+      <div class="field">
+        <label for="name">Full name</label>
+        <input class="input" id="name" name="name" autocomplete="name" placeholder="As printed on your PAN card" aria-describedby="name-why name-err" required>
+        <span class="err-msg" id="name-err">Please enter your name as it appears on your PAN card.</span>
+        <span class="why" id="name-why">Why we ask: your name must match your PAN for the check to pass.</span>
+      </div>
+      <div class="field">
+        <label for="pan">PAN number</label>
+        <input class="input" id="pan" name="pan" inputmode="text" autocapitalize="characters" autocomplete="off" maxlength="10" placeholder="ABCDE1234F" aria-describedby="pan-why pan-err" required>
+        <span class="err-msg" id="pan-err">A PAN has 5 letters, then 4 numbers, then 1 letter. Please check it.</span>
+        <span class="why" id="pan-why">Why we ask: the law requires a PAN to invest in India.</span>
+      </div>
+      <div class="field">
+        <label for="dob">Date of birth</label>
+        <input class="input" id="dob" name="dob" inputmode="numeric" autocomplete="bday" maxlength="10" placeholder="DD / MM / YYYY" aria-describedby="dob-why dob-err" required>
+        <span class="err-msg" id="dob-err">Please enter a date like 14 / 03 / 1998. You must be 18 or older.</span>
+        <span class="why" id="dob-why">Why we ask: you must be 18 or older, and it is used to match your PAN.</span>
+      </div>
+      <div class="field">
+        <label for="mobile">Aadhaar-linked mobile number</label>
+        <div class="phone"><span class="cc" aria-hidden="true">+91</span>
+          <input class="input" id="mobile" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" placeholder="10-digit number" aria-describedby="mobile-why mobile-err" required></div>
+        <span class="err-msg" id="mobile-err">Please enter a 10-digit mobile number.</span>
+        <span class="why" id="mobile-why">Why we ask: we send a one-time code (OTP) here to confirm your Aadhaar. We use these details only to verify you.</span>
+      </div>
+      <button class="btn block" type="submit">Check my details</button>
+      <button class="link" type="button" id="fill" style="justify-self:center">Fill sample details (prototype only)</button>
+    </form>
+  </div>
+</section>
+
+<!-- 4 VERIFICATION -->
+<section class="screen onb" id="s-4" aria-labelledby="h-4" hidden>
+  <div class="wrap stack" style="gap:20px">
+    <div>
+      <div class="progress" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="2" aria-label="Step 2 of 3: verification">
+        <i class="on"></i><i class="on"></i><i></i>
+      </div>
+      <p class="eyebrow">Step 2 of 3 · Verification</p>
+    </div>
+    <div class="hero-mascot" id="v-mascot" style="margin:0" role="img" aria-label="Sprout mark"></div>
+    <div id="v-body" class="stack" style="gap:16px" aria-live="polite"></div>
+
+    <fieldset class="protostate">
+      <legend>Prototype: preview each state</legend>
+      <div class="row" id="state-switch"></div>
+    </fieldset>
+  </div>
+</section>
+
+<!-- 5 START SMALL -->
+<section class="screen onb" id="s-5" aria-labelledby="h-5" hidden>
+  <div class="wrap stack" style="gap:20px">
+    <div>
+      <div class="progress" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="3" aria-label="Step 3 of 3: first investment">
+        <i class="on"></i><i class="on"></i><i class="on"></i>
+      </div>
+      <p class="eyebrow">Step 3 of 3 · Your first investment</p>
+    </div>
+    <div id="invest" class="stack" style="gap:20px">
+      <div class="stack" style="gap:8px">
+        <h1 id="h-5" tabindex="-1">Start small. ₹100 is enough.</h1>
+        <p class="lede">Choose any amount from ₹100. You can add more later, or not at all.</p>
+      </div>
+      <div class="card stack" style="gap:6px">
+        <p class="eyebrow">Sample fund</p>
+        <h2>Nifty 50 Index Fund</h2>
+        <p class="small muted">Follows the 50 largest listed companies in India. Its value moves up and down with the market.</p>
+      </div>
+      <div class="field">
+        <label for="amt">Amount to invest (₹)</label>
+        <div class="amount">
+          <button class="step" type="button" id="minus" aria-label="Decrease amount by ₹50">−</button>
+          <input class="input" id="amt" inputmode="numeric" value="100" aria-describedby="amt-err amt-help">
+          <button class="step" type="button" id="plus" aria-label="Increase amount by ₹50">+</button>
+        </div>
+        <span class="err-msg" id="amt-err" style="display:none" role="alert">The minimum is ₹100. Please enter ₹100 or more.</span>
+        <span class="why" id="amt-help">Minimum ₹100. You are always the one who picks the amount.</span>
+      </div>
+      <div class="chips" role="group" aria-label="Quick amounts">
+        <button class="chip" type="button" data-v="100" aria-pressed="true">₹100</button>
+        <button class="chip" type="button" data-v="250" aria-pressed="false">₹250</button>
+        <button class="chip" type="button" data-v="500" aria-pressed="false">₹500</button>
+      </div>
+      <div class="callout warn" role="note">
+        <span class="ico" aria-hidden="true">ⓘ</span>
+        <p><b>Before you invest:</b> the value of your investment can go up and down, and you may get back less than you put in. Only invest an amount you are comfortable setting aside.</p>
+      </div>
+      <button class="btn block" id="review">Review ₹100</button>
+    </div>
+
+    <div id="confirm" class="stack" style="gap:16px" hidden>
+      <h1 id="h-5b" tabindex="-1">Review your investment</h1>
+      <div class="card stack" style="gap:8px">
+        <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><span class="muted">Fund</span><b>Nifty 50 Index Fund</b></div>
+        <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><span class="muted">Amount</span><b id="sum-amt">₹100</b></div>
+      </div>
+      <p class="small muted">Nothing is charged until you confirm on the next step. You can go back and change the amount.</p>
+      <button class="btn block" id="place">Confirm and continue</button>
+      <button class="btn ghost block" id="edit">Change amount</button>
+    </div>
+
+    <div id="done" class="stack" style="gap:16px" hidden>
+      <div class="hero-mascot" data-mascot="done" role="img" aria-label="Sprout mark: a grown seedling with a small bud"></div>
+      <h1 id="h-5c" tabindex="-1">You've got this. Your first step is in.</h1>
+      <p class="lede">We will update you here and by message once your investment is processed.</p>
+      <p class="referral muted">Know someone who is just starting out? <a href="#done" id="share" style="display:inline-flex;align-items:center;min-height:44px;padding:0 8px">Share Sprout</a></p>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="disclaimer" role="note"><p>Investments in securities markets are subject to market risk. The value can go down as well as up, and you may get back less than you invest. Please read all scheme documents carefully before investing.</p></div>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+/* ---------- mascot: minimal geometric sprout (inline SVG, ~1 KB each) ---------- */
+const LEAF_R='M0 0C0-18 20-24 34-18C34-2 18 8 0 0Z', LEAF_L='M0 0C0-18-20-24-34-18C-34-2-18 8 0 0Z';
+function mascot(pose){
+  const P={seed:{top:70,s:0,seed:1},sprout:{top:60,s:.55},grow:{top:46,s:1},done:{top:40,s:1.1,bud:1}}[pose]||{top:46,s:1};
+  const y=P.top;
+  let g='<circle cx="60" cy="60" r="58" fill="#E6F2EA"/>';
+  g+='<path d="M28 92A32 15 0 0 1 92 92Z" fill="#12241A"/>';
+  if(P.seed) g+='<circle cx="60" cy="72" r="8" fill="#1E6B46"/>';
+  else{
+    g+='<g class="grow"><path d="M60 80V'+y+'" stroke="#1E6B46" stroke-width="5" stroke-linecap="round" fill="none"/>';
+    g+='<g transform="translate(60 '+(y+4)+') scale('+P.s+')"><g class="sway-r"><path d="'+LEAF_R+'" fill="#2E8B50"/></g><g class="sway-l"><path d="'+LEAF_L+'" fill="#2E8B50"/></g></g>';
+    if(P.bud) g+='<circle cx="60" cy="'+(y-8)+'" r="6" fill="#F2B84B"/>';
+    g+='</g>';
+  }
+  return '<svg viewBox="0 0 120 120" aria-hidden="true" focusable="false">'+g+'</svg>';
+}
+document.getElementById('logo').innerHTML=mascot('grow').replace('<svg ','<svg width="32" height="32" ');
+function paintMascots(root){(root||document).querySelectorAll('[data-mascot]').forEach(e=>{e.innerHTML=mascot(e.dataset.mascot)})}
+paintMascots();
+
+/* ---------- router ---------- */
+const ids=['home','1','2','3','4','5'];
+const stepText={1:'',2:'',3:'',4:'',5:''};
+const toast=document.getElementById('toast');
+function say(t){toast.textContent=t;toast.hidden=false;clearTimeout(say.t);say.t=setTimeout(()=>toast.hidden=true,4200)}
+function route(){
+  let h=(location.hash||'#home').slice(1); if(!ids.includes(h)) h='home';
+  ids.forEach(i=>document.getElementById('s-'+i).hidden=(i!==h));
+  const idx=ids.indexOf(h);
+  document.getElementById('back').hidden=(h==='home');
+  document.getElementById('stepper').textContent=idx>0?('Screen '+idx+' of 5'):'';
+  if(h==='4') startVerify(); else stopVerify();
+  if(h==='5') resetInvest();
+  const hd=document.querySelector('#s-'+h+' h1'); if(hd){hd.focus({preventScroll:true})}
+  window.scrollTo(0,0);
+}
+document.getElementById('back').onclick=()=>{const h=(location.hash||'#home').slice(1);const i=ids.indexOf(h);location.hash='#'+ids[Math.max(0,i-1)]};
+addEventListener('hashchange',route);
+
+/* ---------- 2: checklist + reminder ---------- */
+const cs=[...document.querySelectorAll('#s-2 .check input')];
+cs.forEach(c=>c.onchange=()=>document.getElementById('ready-count').textContent=cs.filter(x=>x.checked).length+' of 3 ready');
+const rem=document.getElementById('remind'), ro=document.getElementById('remind-open');
+ro.onclick=()=>{rem.hidden=!rem.hidden;ro.setAttribute('aria-expanded',String(!rem.hidden))};
+document.getElementById('remind-set').onclick=()=>{
+  const v=document.querySelector('input[name=when]:checked').value, d=document.getElementById('remind-done');
+  d.textContent='Reminder set for '+v+'. We will message you with this same checklist.';d.hidden=false;rem.hidden=true;ro.setAttribute('aria-expanded','false');
+};
+
+/* ---------- 3: identity form ---------- */
+const F={name:v=>v.trim().length>=2,pan:v=>/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(v),
+  dob:v=>{const m=v.replace(/\s/g,'').match(/^(\d{2})\/(\d{2})\/(\d{4})$/);if(!m)return false;const d=new Date(+m[3],+m[2]-1,+m[1]);
+    if(d.getDate()!==+m[1]||d.getMonth()!==+m[2]-1)return false;const a=(Date.now()-d)/31557600000;return a>=18&&a<110},
+  mobile:v=>/^[6-9]\d{9}$/.test(v)};
+const pan=document.getElementById('pan'), dob=document.getElementById('dob');
+pan.oninput=()=>{pan.value=pan.value.toUpperCase().replace(/[^A-Z0-9]/g,'')};
+dob.oninput=()=>{let d=dob.value.replace(/\D/g,'').slice(0,8),o=d.slice(0,2);if(d.length>2)o+=' / '+d.slice(2,4);if(d.length>4)o+=' / '+d.slice(4);dob.value=o};
+document.getElementById('mobile').oninput=e=>{e.target.value=e.target.value.replace(/\D/g,'')};
+Object.keys(F).forEach(k=>{const el=document.getElementById(k);el.onblur=()=>{if(el.value)el.setAttribute('aria-invalid',String(!F[k](el.value)))};
+  el.addEventListener('input',()=>{if(el.getAttribute('aria-invalid')==='true'&&F[k](el.value))el.setAttribute('aria-invalid','false')})});
+document.getElementById('idform').onsubmit=e=>{
+  e.preventDefault();let first=null;
+  Object.keys(F).forEach(k=>{const el=document.getElementById(k),ok=F[k](el.value);el.setAttribute('aria-invalid',String(!ok));if(!ok&&!first)first=el});
+  if(first){first.focus();return}
+  vState='progress';location.hash='#4';
+};
+document.getElementById('fill').onclick=()=>{
+  [['name','Priya Sharma'],['pan','ABCDE1234F'],['dob','14 / 03 / 1998'],['mobile','9876543210']].forEach(([k,v])=>{const el=document.getElementById(k);el.value=v;el.setAttribute('aria-invalid','false')});
+};
+
+/* ---------- 4: verification states ---------- */
+let vState='progress', vTimer=null, vStart=0, vStep=1, notify=false;
+const STEPS=['Details received','Checking your PAN with the Income Tax Department','Confirming your Aadhaar with a one-time code','Matching your bank account'];
+const STATES=[['loading','Loading'],['progress','In progress'],['slow','Taking longer'],['error','Error'],['empty','Empty'],['verified','Verified']];
+const sw=document.getElementById('state-switch');
+STATES.forEach(([k,l])=>{const b=document.createElement('button');b.type='button';b.textContent=l;b.dataset.k=k;b.onclick=()=>{vState=k;if(k==='progress'){vStep=1;vStart=Date.now()}renderV()};sw.appendChild(b)});
+function stepsHtml(){return '<ol class="steps" aria-label="Verification steps">'+STEPS.map((t,i)=>{
+  const c=i<vStep?'done':(i===vStep?'now':'');
+  const dot=i<vStep?'✓':(i===vStep?'<span class="spin" aria-hidden="true"></span>':(i+1));
+  const st=i<vStep?'Done':(i===vStep?'Working on it':'Waiting');
+  return '<li class="'+c+'"><span class="dot" aria-hidden="true">'+dot+'</span><span><b>'+t+'</b><br><span class="small muted">'+st+'</span></span></li>'}).join('')+'</ol>';}
+function notifyBtn(){return notify
+  ? '<p class="callout" role="status"><span class="ico" aria-hidden="true">✓</span><span>Done. We will send you an SMS and an app notification as soon as there is news. You can close the app.</span></p>'
+  : '<button class="btn ghost block" id="notify">Notify me when it is done</button>'}
+function renderV(){
+  const m=document.getElementById('v-mascot'), b=document.getElementById('v-body');
+  sw.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.k===vState)));
+  const mp={loading:'sprout',progress:'grow',slow:'grow',error:'sprout',empty:'seed',verified:'done'}[vState];
+  m.innerHTML=mascot(mp);if(vState==='progress'||vState==='slow'||vState==='loading')m.firstChild.classList.add('breathe');
+  let h='';
+  if(vState==='loading') h='<h1 id="h-4" tabindex="-1">Getting your latest status…</h1><div class="skel" aria-hidden="true"><i style="width:60%"></i><i></i><i style="width:80%"></i><i style="width:45%"></i></div><p class="muted">One moment. Your details are saved.</p>';
+  if(vState==='progress') h='<span class="pill" role="status"><span class="spin" aria-hidden="true"></span>In progress · step '+vStep+' of 4</span><h1 id="h-4" tabindex="-1">We are checking your details</h1>'+
+    '<p class="lede">The app is working. Checks like this usually take 2 to 5 minutes, and sometimes a few hours. You do not need to stay on this screen.</p>'+stepsHtml()+
+    '<p class="small muted" id="elapsed" aria-hidden="true"></p>'+notifyBtn();
+  if(vState==='slow') h='<span class="pill warn" role="status">Taking longer than usual</span><h1 id="h-4" tabindex="-1">Still working. This one needs a little more time.</h1>'+
+    '<p class="lede">Some checks take a few hours, and rarely up to 24. Nothing is wrong, and your details are saved. There is nothing you need to do.</p>'+stepsHtml()+notifyBtn();
+  if(vState==='error') h='<div class="callout err" role="alert"><span class="ico" aria-hidden="true">!</span><span><b>We could not match your PAN with the name you entered.</b></span></div><h1 id="h-4" tabindex="-1">Let us fix that together</h1>'+
+    '<p class="lede">This usually happens when the name differs slightly from the PAN card, for example a missing middle name. Your other details are fine.</p>'+
+    '<div class="stack"><a class="btn block" href="#3">Edit my details</a><a class="btn ghost block" href="#4" id="support">Talk to support</a></div>';
+  if(vState==='empty') h='<h1 id="h-4" tabindex="-1">Nothing is being checked yet</h1><p class="lede">Once you add your details, you can follow the progress here. It takes about 2 minutes to fill in.</p><a class="btn block" href="#3">Add my details</a>';
+  if(vState==='verified') h='<span class="pill ok" role="status">✓ Verified</span><h1 id="h-4" tabindex="-1">You are verified. Nicely done.</h1><p class="lede">That was the longest part. Next, choose how much to start with.</p><a class="btn block" href="#5">Continue</a>';
+  b.innerHTML=h;
+  const n=document.getElementById('notify');if(n)n.onclick=()=>{notify=true;renderV();say('Notification turned on')};
+  const sp=document.getElementById('support');if(sp)sp.onclick=e=>{e.preventDefault();say('Support chat would open here')};
+  tickElapsed();
+}
+function tickElapsed(){const e=document.getElementById('elapsed');if(e){const s=Math.max(0,Math.round((Date.now()-vStart)/1000));e.textContent='Started '+(s<60?s+' seconds':Math.round(s/60)+' min')+' ago · Last checked just now'}}
+function startVerify(){
+  stopVerify();vStart=Date.now();if(vState==='progress')vStep=1;renderV();
+  vTimer=setInterval(()=>{
+    if(vState!=='progress'){return}
+    tickElapsed();
+    if(Date.now()-vStart>3500*vStep&&vStep<4){vStep++;renderV()}
+    else if(vStep>=4&&Date.now()-vStart>3500*4){vState='verified';renderV()}
+  },1000);
+}
+function stopVerify(){clearInterval(vTimer)}
+
+/* ---------- 5: first investment ---------- */
+const amt=document.getElementById('amt'), aerr=document.getElementById('amt-err');
+function setAmt(v){amt.value=v;sync()}
+function sync(){
+  const n=parseInt(amt.value.replace(/\D/g,''),10)||0, ok=n>=100;
+  amt.setAttribute('aria-invalid',String(!ok));aerr.style.display=ok?'none':'block';
+  document.getElementById('review').textContent='Review ₹'+(ok?n.toLocaleString('en-IN'):'—');
+  document.getElementById('review').disabled=!ok;
+  document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',String(+c.dataset.v===n)));
+}
+amt.oninput=()=>{amt.value=amt.value.replace(/\D/g,'').slice(0,7);sync()};
+document.getElementById('minus').onclick=()=>setAmt(Math.max(100,(parseInt(amt.value,10)||100)-50));
+document.getElementById('plus').onclick=()=>setAmt((parseInt(amt.value,10)||100)+50);
+document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>setAmt(c.dataset.v));
+const panes=['invest','confirm','done'];
+function pane(p){panes.forEach(x=>document.getElementById(x).hidden=(x!==p));const h=document.querySelector('#'+p+' h1');if(h)h.focus();window.scrollTo(0,0)}
+function resetInvest(){pane('invest');setAmt(100)}
+document.getElementById('review').onclick=()=>{document.getElementById('sum-amt').textContent='₹'+(parseInt(amt.value,10)).toLocaleString('en-IN');pane('confirm')};
+document.getElementById('edit').onclick=()=>pane('invest');
+document.getElementById('place').onclick=()=>{pane('done');paintMascots(document.getElementById('done'))};
+document.getElementById('share').onclick=e=>{e.preventDefault();say('Share sheet would open here')};
+
+route();
+</script>
+</body>
+</html>

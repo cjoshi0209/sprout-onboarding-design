@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Onboarding 3: Your details</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}
+.cta:hover{background:#14502F}
+.back:hover{background:#E6F2EA}
+.cta:focus-visible,.back:focus-visible,.linkbtn:focus-visible{outline:3px solid #1A4FB8;outline-offset:3px}
+.fld:focus{outline:3px solid #1A4FB8;outline-offset:1px;border-color:#1A4FB8 !important}
+.fld::placeholder{color:#4A5B51;opacity:1}
+</style>
+</helmet>
+<div style="position:relative;width:390px;height:844px;overflow:hidden;background:#FBF9F4;color:#12241A;font-family:'Plus Jakarta Sans','Noto Sans Devanagari',system-ui,sans-serif">
+
+  <div style="position:absolute;left:0;right:0;top:0;bottom:84px;overflow-y:auto;box-sizing:border-box;padding:0 20px 28px;display:flex;flex-direction:column;gap:18px">
+
+    <div style="display:flex;align-items:center;gap:6px;min-height:64px;margin-left:-8px">
+      <a class="back" href="Onboarding2.dc.html" aria-label="Back" style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="#12241A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </a>
+      <span style="font-size:19px;font-weight:800;letter-spacing:-0.01em">Sprout</span>
+      <span style="margin-left:auto;font-size:14px;font-weight:600;color:#4A5B51">3 of 5</span>
+    </div>
+
+    <div role="img" aria-label="Step 3 of 5" style="display:flex;gap:6px">
+      <i style="flex:1;height:4px;border-radius:2px;background:#1E6B46"></i><i style="flex:1;height:4px;border-radius:2px;background:#1E6B46"></i><i style="flex:1;height:4px;border-radius:2px;background:#1E6B46"></i><i style="flex:1;height:4px;border-radius:2px;background:#D8E0DA"></i><i style="flex:1;height:4px;border-radius:2px;background:#D8E0DA"></i>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:6px">
+      <span style="font-size:13px;font-weight:700;color:#1E6B46;letter-spacing:0.06em;text-transform:uppercase">Your details · about 2 minutes</span>
+      <h1 style="margin:0;font-size:29px;line-height:1.2;font-weight:800;letter-spacing:-0.02em">Tell us who you are</h1>
+      <p style="margin:0;font-size:16px;line-height:1.6;color:#4A5B51">Four quick details. We explain why under each one.</p>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <sc-for list="{{fields}}" as="f" hint-placeholder-count="4">
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <label for="{{f.id}}" style="font-size:15px;font-weight:700;line-height:1.5">{{f.label}}</label>
+          <div style="display:flex;gap:8px">
+            <sc-if value="{{f.hasPrefix}}" hint-placeholder-val="{{ false }}">
+              <span style="flex:none;display:flex;align-items:center;justify-content:center;min-width:64px;box-sizing:border-box;border:2px solid #6F8176;border-radius:14px;background:#E6F2EA;font-size:17px;font-weight:700">+91</span>
+            </sc-if>
+            <input class="fld" id="{{f.id}}" value="{{f.value}}" onInput="{{f.onInput}}" placeholder="{{f.placeholder}}" inputMode="{{f.inputmode}}" maxLength="{{f.max}}" autoComplete="{{f.auto}}" aria-invalid="{{f.invalid}}" style="flex:1;min-width:0;box-sizing:border-box;height:54px;padding:0 16px;border:2px solid {{f.border}};border-radius:14px;background:#FFFFFF;color:#12241A;font:500 17px/1.4 'Plus Jakarta Sans','Noto Sans Devanagari',system-ui,sans-serif">
+          </div>
+          <sc-if value="{{f.showError}}" hint-placeholder-val="{{ false }}">
+            <span role="alert" style="font-size:14px;line-height:1.5;color:#B3261E;font-weight:600">{{f.error}}</span>
+          </sc-if>
+          <span style="font-size:14px;line-height:1.55;color:#4A5B51">{{f.why}}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{allValid}}" hint-placeholder-val="{{ false }}">
+      <a class="cta" href="Onboarding4.dc.html" style="display:flex;align-items:center;justify-content:center;min-height:56px;padding:14px 24px;border-radius:999px;background:#1E6B46;color:#FFFFFF;font-size:17px;font-weight:700;text-decoration:none">Check my details</a>
+    </sc-if>
+    <sc-if value="{{notValid}}" hint-placeholder-val="{{ true }}">
+      <button class="cta" type="button" onClick="{{tryNow}}" style="min-height:56px;padding:14px 24px;border-radius:999px;border:0;background:#1E6B46;color:#FFFFFF;font:700 17px/1.4 'Plus Jakarta Sans','Noto Sans Devanagari',system-ui,sans-serif;cursor:pointer">Check my details</button>
+    </sc-if>
+    <p style="margin:-6px 0 0;font-size:13px;line-height:1.5;color:#4A5B51;text-align:center">We use these details only to verify you.</p>
+    <button class="linkbtn" type="button" onClick="{{fillSample}}" style="align-self:center;min-height:44px;padding:8px 12px;border:0;background:transparent;color:#1E6B46;font:600 14px/1.4 'Plus Jakarta Sans','Noto Sans Devanagari',system-ui,sans-serif;text-decoration:underline;cursor:pointer">Prototype shortcut: fill sample details</button>
+  </div>
+
+  <div style="position:absolute;left:0;right:0;bottom:0">
+    <dc-import name="Disclaimer" hint-size="100%,84px"></dc-import>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { name: '', pan: '', dob: '', mobile: '', touched: {}, tried: false };
+  }
+  static ok = {
+    name: (v) => v.trim().length >= 2,
+    pan: (v) => /^[A-Z]{5}[0-9]{4}[A-Z]$/.test(v),
+    dob: (v) => {
+      const m = v.replace(/\s/g, '').match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+      if (!m) return false;
+      const d = new Date(+m[3], +m[2] - 1, +m[1]);
+      if (d.getDate() !== +m[1] || d.getMonth() !== +m[2] - 1) return false;
+      const age = (Date.now() - d.getTime()) / 31557600000;
+      return age >= 18 && age < 110;
+    },
+    mobile: (v) => /^[6-9]\d{9}$/.test(v)
+  };
+  clean(key, raw) {
+    if (key === 'pan') return raw.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 10);
+    if (key === 'mobile') return raw.replace(/\D/g, '').slice(0, 10);
+    if (key === 'dob') {
+      const d = raw.replace(/\D/g, '').slice(0, 8);
+      let o = d.slice(0, 2);
+      if (d.length > 2) o += ' / ' + d.slice(2, 4);
+      if (d.length > 4) o += ' / ' + d.slice(4);
+      return o;
+    }
+    return raw;
+  }
+  renderVals() {
+    const s = this.state;
+    const C = Component.ok;
+    const defs = [
+      { key: 'name', id: 'f-name', label: 'Full name', placeholder: 'As printed on your PAN card', inputmode: 'text', max: 60, auto: 'name', why: 'Why we ask: your name must match your PAN for the check to pass.', error: 'Please enter your name as it appears on your PAN card.' },
+      { key: 'pan', id: 'f-pan', label: 'PAN number', placeholder: 'ABCDE1234F', inputmode: 'text', max: 10, auto: 'off', why: 'Why we ask: the law requires a PAN to invest in India.', error: 'A PAN has 5 letters, then 4 numbers, then 1 letter. Please check it.' },
+      { key: 'dob', id: 'f-dob', label: 'Date of birth', placeholder: 'DD / MM / YYYY', inputmode: 'numeric', max: 14, auto: 'bday', why: 'Why we ask: you must be 18 or older, and it is used to match your PAN.', error: 'Please enter a date like 14 / 03 / 1998. You must be 18 or older.' },
+      { key: 'mobile', id: 'f-mobile', label: 'Aadhaar-linked mobile number', placeholder: '10-digit number', inputmode: 'numeric', max: 10, auto: 'tel-national', hasPrefix: true, why: 'Why we ask: we send a one-time code (OTP) here to confirm your Aadhaar.', error: 'Please enter a 10-digit mobile number.' }
+    ];
+    const fields = defs.map((d) => {
+      const v = s[d.key];
+      const good = C[d.key](v);
+      const show = !good && (s.tried || (s.touched[d.key] && v.length > 0));
+      return Object.assign({}, d, {
+        value: v,
+        invalid: show,
+        showError: show,
+        border: show ? '#B3261E' : '#6F8176',
+        hasPrefix: !!d.hasPrefix,
+        onInput: (e) => {
+          const t = Object.assign({}, s.touched, { [d.key]: true });
+          this.setState({ [d.key]: this.clean(d.key, e.target.value), touched: t });
+        }
+      });
+    });
+    const allValid = defs.every((d) => C[d.key](s[d.key]));
+    return {
+      fields,
+      allValid,
+      notValid: !allValid,
+      tryNow: () => this.setState({ tried: true }),
+      fillSample: () => this.setState({ name: 'Priya Sharma', pan: 'ABCDE1234F', dob: '14 / 03 / 1998', mobile: '9876543210', tried: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

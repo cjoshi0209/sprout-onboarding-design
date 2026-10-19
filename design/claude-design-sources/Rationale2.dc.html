@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rationale, page 2</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width:1240px;height:1754px;box-sizing:border-box;padding:72px 96px 56px;background:#FFFFFF;color:#12241A;font-family:'Plus Jakarta Sans','Noto Sans Devanagari',system-ui,sans-serif;display:flex;flex-direction:column;gap:22px">
+
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;border-bottom:2px solid #12241A;padding-bottom:20px">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <span style="font-size:15px;font-weight:700;color:#1E6B46;letter-spacing:0.07em;text-transform:uppercase">Design rationale</span>
+      <h1 style="margin:0;font-size:46px;line-height:1.08;font-weight:800;letter-spacing:-0.02em">Checks, risks and what to confirm</h1>
+    </div>
+    <span style="font-size:15px;color:#4A5B51;font-weight:600;white-space:nowrap">Page 2 of 2</span>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <h2 style="margin:0;font-size:24px;line-height:1.3;font-weight:800">4. Compliance checklist</h2>
+    <div style="border:1px solid #D8E0DA;border-radius:16px;overflow:hidden;font-size:15px;line-height:1.55">
+      <div style="display:grid;grid-template-columns:300px minmax(0,1fr);background:#E6F2EA;font-size:13px;font-weight:800;letter-spacing:0.05em;text-transform:uppercase;color:#14502F"><span style="padding:10px 16px">Constraint</span><span style="padding:10px 16px">How it is met</span></div>
+      <div style="display:grid;grid-template-columns:300px minmax(0,1fr);border-top:1px solid #D8E0DA"><strong style="padding:12px 16px">Risk disclaimer on every investment page, 12 px or larger, visible without scrolling</strong><span style="padding:12px 16px;color:#4A5B51">One shared bar, 12 px on a 1.5 line height, pinned to the bottom of every mobile screen (homepage and screens 1 to 5) and sticky on desktop. White on ink is 16.24:1. Screen 5 adds a plain-language risk note above the button.</span></div>
+      <div style="display:grid;grid-template-columns:300px minmax(0,1fr);border-top:1px solid #D8E0DA"><strong style="padding:12px 16px">No “guaranteed”, “safe” or “risk-free”</strong><span style="padding:12px 16px;color:#4A5B51">Searched all screen copy, microcopy and placeholders. Risk is described as “can go up and down” and “you may get back less than you put in”.</span></div>
+      <div style="display:grid;grid-template-columns:300px minmax(0,1fr);border-top:1px solid #D8E0DA"><strong style="padding:12px 16px">WCAG AA contrast</strong><span style="padding:12px 16px;color:#4A5B51">All 17 pairs pass. The lowest text pair is 5.62:1 against a 4.5:1 requirement, and controls and graphics are 3.71:1 or higher against 3:1. Ratios are on the Colour board.</span></div>
+      <div style="display:grid;grid-template-columns:300px minmax(0,1fr);border-top:1px solid #D8E0DA"><strong style="padding:12px 16px">Tap targets of 44 × 44 px or more</strong><span style="padding:12px 16px;color:#4A5B51">Back 44, chips and list rows 44 or more, steppers 52, fields 54, buttons 56.</span></div>
+      <div style="display:grid;grid-template-columns:300px minmax(0,1fr);border-top:1px solid #D8E0DA"><strong style="padding:12px 16px">Page under 1.5 MB, animation under 100 KB each</strong><span style="padding:12px 16px;color:#4A5B51">Designed to the budget: no images, one font family, inline SVG, CSS-only motion under 1 KB. Expected well under 300 KB all-in; to be measured in the build, not yet measured.</span></div>
+      <div style="display:grid;grid-template-columns:300px minmax(0,1fr);border-top:1px solid #D8E0DA"><strong style="padding:12px 16px">English first, Hindi later</strong><span style="padding:12px 16px;color:#4A5B51">No fixed-width labels, wrapping everywhere, 1.5 to 1.6 line heights, Devanagari fallback in the font stack, room for about 30% longer text.</span></div>
+      <div style="display:grid;grid-template-columns:300px minmax(0,1fr);border-top:1px solid #D8E0DA"><strong style="padding:12px 16px">Buildable by one developer in three weeks</strong><span style="padding:12px 16px;color:#4A5B51">Native elements only, no component library. Component list and week-by-week plan are on the Type and components board.</span></div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <h2 style="margin:0;font-size:24px;line-height:1.3;font-weight:800">5. Accessibility notes</h2>
+      <ul style="margin:0;padding-left:22px;display:flex;flex-direction:column;gap:6px;font-size:16px;line-height:1.65;color:#4A5B51">
+        <li>Real buttons, links, inputs and labels everywhere, so keyboard and screen readers work without extra roles.</li>
+        <li>Every field has a visible label, with its “why we ask” line directly beneath.</li>
+        <li>Errors are sentences, never colour alone, and announced as alerts.</li>
+        <li>Verification status is text first and announced politely as it changes.</li>
+        <li>Progress is shown as bars and as words (“3 of 5”).</li>
+        <li>3 px focus ring at 6.99:1. Motion stops under reduced motion.</li>
+      </ul>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <h2 style="margin:0;font-size:24px;line-height:1.3;font-weight:800">6. Hindi readiness</h2>
+      <p style="margin:0;font-size:16px;line-height:1.7;color:#4A5B51">Nothing has a fixed width, so labels, buttons and cards grow with their text and wrap. Body line height is 1.6 and headings 1.2 or more, which keeps Devanagari matras from clipping. The font stack ends in Noto Sans Devanagari so Hindi lands in matching weights. Copy is plain strings, ready to move to a translation file. A sample is on the Type and components board; it still needs a native-speaker review and a visual test at 30% longer strings.</p>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <h2 style="margin:0;font-size:24px;line-height:1.3;font-weight:800">7. Testing the copy against the support complaints</h2>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+      <div style="background:#FBF9F4;border:1px solid #D8E0DA;border-radius:16px;padding:18px 22px;display:flex;flex-direction:column;gap:6px"><strong style="font-size:16px">“I didn’t know I needed PAN and Aadhaar.”</strong><span style="font-size:15px;line-height:1.65;color:#4A5B51">The homepage says to keep them handy, Welcome lists all three items, and screen 2 is a tick-off checklist with a real “Remind me later”. A first-time user knows what to prepare before they begin.</span></div>
+      <div style="background:#FBF9F4;border:1px solid #D8E0DA;border-radius:16px;padding:18px 22px;display:flex;flex-direction:column;gap:6px"><strong style="font-size:16px">“I thought the app crashed.”</strong><span style="font-size:15px;line-height:1.65;color:#4A5B51">Screen 4 always names its state, shows which check is running, gives an honest range (“usually 2 to 5 minutes, sometimes a few hours”), says there is nothing to do, and offers a notification. Loading, slow, error and empty states are all designed.</span></div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <h2 style="margin:0;font-size:24px;line-height:1.3;font-weight:800">8. My three biggest risks</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
+      <div style="background:#E6F2EA;border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;gap:6px"><strong style="font-size:16px">1. Verification time is not ours to control</strong><span style="font-size:15px;line-height:1.65">If a check takes hours, good messaging cannot rescue every user. Mitigation: notify-me with a real SMS or push, and an honest range from the verification provider. Needs a backend commitment.</span></div>
+      <div style="background:#E6F2EA;border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;gap:6px"><strong style="font-size:16px">2. Minimal may under-explain</strong><span style="font-size:15px;line-height:1.65">Cutting the video, ticker and pop-ups removes noise, but some visitors may want more proof before they trust a new app. Mitigation: measure bounce against the 78% baseline and add a light “how it works” first.</span></div>
+      <div style="background:#E6F2EA;border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;gap:6px"><strong style="font-size:16px">3. Regulatory wording is a draft</strong><span style="font-size:15px;line-height:1.65">The disclaimer, risk note and sample fund text are plain-language drafts. Compliance must approve the exact wording and the PAN and Aadhaar flow. The sample fund is illustrative, not a recommendation.</span></div>
+    </div>
+  </div>
+
+  <div style="margin-top:auto;display:flex;flex-direction:column;gap:6px;border-top:1px solid #D8E0DA;padding-top:14px">
+    <span style="font-size:14px;line-height:1.6;color:#4A5B51"><b style="color:#12241A">Assumptions to confirm with engineering and compliance:</b> the 10-minute and 2 to 5 minute estimates, the four verification steps, the OTP flow, and the reminder channel (SMS). The Figma file with a clickable prototype is a separate deliverable.</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1240,"height":1754}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

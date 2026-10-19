@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Onboarding 1: Welcome</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}
+.cta:hover{background:#14502F}
+.back:hover{background:#E6F2EA}
+.cta:focus-visible,.back:focus-visible{outline:3px solid #1A4FB8;outline-offset:3px}
+</style>
+</helmet>
+<div style="position:relative;width:390px;height:844px;overflow:hidden;background:#FBF9F4;color:#12241A;font-family:'Plus Jakarta Sans','Noto Sans Devanagari',system-ui,sans-serif">
+
+  <div style="position:absolute;left:0;right:0;top:0;bottom:84px;overflow-y:auto;box-sizing:border-box;padding:0 20px 28px;display:flex;flex-direction:column;gap:18px">
+
+    <div style="display:flex;align-items:center;gap:6px;min-height:64px;margin-left:-8px">
+      <a class="back" href="HomeMobile.dc.html" aria-label="Back to homepage" style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="#12241A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </a>
+      <span style="font-size:19px;font-weight:800;letter-spacing:-0.01em">Sprout</span>
+      <span style="margin-left:auto;font-size:14px;font-weight:600;color:#4A5B51">1 of 5</span>
+    </div>
+
+    <div role="img" aria-label="Step 1 of 5" style="display:flex;gap:6px">
+      <i style="flex:1;height:4px;border-radius:2px;background:#1E6B46"></i><i style="flex:1;height:4px;border-radius:2px;background:#D8E0DA"></i><i style="flex:1;height:4px;border-radius:2px;background:#D8E0DA"></i><i style="flex:1;height:4px;border-radius:2px;background:#D8E0DA"></i><i style="flex:1;height:4px;border-radius:2px;background:#D8E0DA"></i>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:16px;margin-top:4px">
+      <dc-import name="Mascot" pose="sprout" size="76" hint-size="76px,76px"></dc-import>
+      <span style="font-size:14px;font-weight:700;color:#1E6B46;letter-spacing:0.06em;text-transform:uppercase">Welcome</span>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <h1 style="margin:0;font-size:29px;line-height:1.2;font-weight:800;letter-spacing:-0.02em;text-wrap:balance">Let’s get you set up in about 10 minutes.</h1>
+      <p style="margin:0;font-size:16px;line-height:1.6;color:#4A5B51">To open your account we need to confirm who you are. Here is what you will need.</p>
+    </div>
+
+    <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:20px;display:flex;flex-direction:column">
+      <div style="display:flex;align-items:center;gap:14px;padding:14px 16px;border-bottom:1px solid #D8E0DA">
+        <div style="flex:none;width:44px;height:44px;border-radius:14px;background:#E6F2EA;display:flex;align-items:center;justify-content:center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E6B46" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="9" cy="11" r="2"></circle><path d="M6.5 16c.5-1.5 4.5-1.5 5 0M14 10h4M14 13h3"></path></svg>
+        </div>
+        <div style="display:flex;flex-direction:column"><strong style="font-size:16px;line-height:1.5">Your PAN card</strong><span style="font-size:14px;line-height:1.5;color:#4A5B51">The card, or just the number</span></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;padding:14px 16px;border-bottom:1px solid #D8E0DA">
+        <div style="flex:none;width:44px;height:44px;border-radius:14px;background:#E6F2EA;display:flex;align-items:center;justify-content:center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E6B46" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2"></rect><path d="M11 18.5h2"></path></svg>
+        </div>
+        <div style="display:flex;flex-direction:column"><strong style="font-size:16px;line-height:1.5">Your Aadhaar-linked mobile</strong><span style="font-size:14px;line-height:1.5;color:#4A5B51">We send a one-time code (OTP) to it</span></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;padding:14px 16px">
+        <div style="flex:none;width:44px;height:44px;border-radius:14px;background:#E6F2EA;display:flex;align-items:center;justify-content:center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E6B46" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-5 9 5M5 10v7M9.5 10v7M14.5 10v7M19 10v7M3 20h18"></path></svg>
+        </div>
+        <div style="display:flex;flex-direction:column"><strong style="font-size:16px;line-height:1.5">Your bank account details</strong><span style="font-size:14px;line-height:1.5;color:#4A5B51">Account number and IFSC</span></div>
+      </div>
+    </div>
+
+    <p style="margin:0;font-size:14px;line-height:1.55;color:#4A5B51"><strong style="color:#12241A">How long it takes:</strong> about 10 minutes to fill in. Checking your details can take a little longer, and we will show you how it is going.</p>
+
+    <a class="cta" href="Onboarding2.dc.html" style="display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:14px 24px;border-radius:999px;background:#1E6B46;color:#FFFFFF;font-size:17px;font-weight:700;text-decoration:none">
+      Continue
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </a>
+  </div>
+
+  <div style="position:absolute;left:0;right:0;bottom:0">
+    <dc-import name="Disclaimer" hint-size="100%,84px"></dc-import>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

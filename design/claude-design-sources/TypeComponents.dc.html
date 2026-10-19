@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Type, tokens and components</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Noto+Sans+Devanagari:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width:1200px;height:2180px;box-sizing:border-box;padding:64px;background:#FBF9F4;color:#12241A;font-family:'Plus Jakarta Sans','Noto Sans Devanagari',system-ui,sans-serif;display:flex;flex-direction:column;gap:40px">
+
+  <div style="display:flex;flex-direction:column;gap:12px;max-width:880px">
+    <span style="font-size:14px;font-weight:700;color:#1E6B46;letter-spacing:0.07em;text-transform:uppercase">Type, tokens and components</span>
+    <h1 style="margin:0;font-size:44px;line-height:1.1;font-weight:800;letter-spacing:-0.02em">Standard parts, one front-end developer, three weeks</h1>
+    <p style="margin:0;font-size:17px;line-height:1.65;color:#4A5B51">Everything here maps to a native HTML element plus a small set of tokens. No component library and no web-font beyond one family, so the page stays light on a ₹10,000 phone over 4G.</p>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <h2 style="margin:0;font-size:22px;font-weight:800">Type</h2>
+    <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:20px;padding:8px 28px">
+      <div style="display:grid;grid-template-columns:150px minmax(0,1fr) 200px;align-items:center;gap:20px;padding:16px 0;border-bottom:1px solid #D8E0DA"><span style="font-size:13px;color:#4A5B51;font-weight:700">Display 48 / 1.05</span><span style="font-size:48px;line-height:1.05;font-weight:800;letter-spacing:-0.025em">Start small</span><span style="font-size:13px;color:#4A5B51">800, homepage only</span></div>
+      <div style="display:grid;grid-template-columns:150px minmax(0,1fr) 200px;align-items:center;gap:20px;padding:16px 0;border-bottom:1px solid #D8E0DA"><span style="font-size:13px;color:#4A5B51;font-weight:700">H1 29 / 1.2</span><span style="font-size:29px;line-height:1.2;font-weight:800;letter-spacing:-0.02em">Tell us who you are</span><span style="font-size:13px;color:#4A5B51">800, one per screen</span></div>
+      <div style="display:grid;grid-template-columns:150px minmax(0,1fr) 200px;align-items:center;gap:20px;padding:16px 0;border-bottom:1px solid #D8E0DA"><span style="font-size:13px;color:#4A5B51;font-weight:700">H2 21 / 1.3</span><span style="font-size:21px;line-height:1.3;font-weight:800">How Sprout keeps you in control</span><span style="font-size:13px;color:#4A5B51">800</span></div>
+      <div style="display:grid;grid-template-columns:150px minmax(0,1fr) 200px;align-items:center;gap:20px;padding:16px 0;border-bottom:1px solid #D8E0DA"><span style="font-size:13px;color:#4A5B51;font-weight:700">Body 16 / 1.6</span><span style="font-size:16px;line-height:1.6">Choose any amount from ₹100. You can add more later.</span><span style="font-size:13px;color:#4A5B51">400, labels 700</span></div>
+      <div style="display:grid;grid-template-columns:150px minmax(0,1fr) 200px;align-items:center;gap:20px;padding:16px 0;border-bottom:1px solid #D8E0DA"><span style="font-size:13px;color:#4A5B51;font-weight:700">Small 14 / 1.55</span><span style="font-size:14px;line-height:1.55;color:#4A5B51">Why we ask: your name must match your PAN for the check to pass.</span><span style="font-size:13px;color:#4A5B51">400, hints</span></div>
+      <div style="display:grid;grid-template-columns:150px minmax(0,1fr) 200px;align-items:center;gap:20px;padding:16px 0"><span style="font-size:13px;color:#4A5B51;font-weight:700">Disclaimer 12 / 1.5</span><span style="font-size:12px;line-height:1.5">Investments are subject to market risk. You may get back less than you invest.</span><span style="font-size:13px;color:#4A5B51">400, the 12px minimum</span></div>
+    </div>
+    <p style="margin:0;font-size:14px;line-height:1.6;color:#4A5B51"><strong style="color:#12241A">Plus Jakarta Sans</strong> for everything, with <strong style="color:#12241A">Noto Sans Devanagari</strong> as the paired fallback so Hindi falls into the same weights without a redesign. Body is never below 14 px; the disclaimer is 12 px.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <h2 style="margin:0;font-size:22px;font-weight:800">Spacing, radius, targets</h2>
+      <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:20px;padding:20px 24px;display:flex;flex-direction:column;gap:12px;font-size:15px;line-height:1.5">
+        <div style="display:flex;align-items:flex-end;gap:10px"><i style="width:4px;height:4px;background:#1E6B46;display:block"></i><i style="width:8px;height:8px;background:#1E6B46;display:block"></i><i style="width:12px;height:12px;background:#1E6B46;display:block"></i><i style="width:16px;height:16px;background:#1E6B46;display:block"></i><i style="width:20px;height:20px;background:#1E6B46;display:block"></i><i style="width:24px;height:24px;background:#1E6B46;display:block"></i><i style="width:32px;height:32px;background:#1E6B46;display:block"></i><i style="width:48px;height:48px;background:#1E6B46;display:block"></i><span style="color:#4A5B51;font-size:14px">4, 8, 12, 16, 20, 24, 32, 48</span></div>
+        <div style="display:flex;align-items:center;gap:10px"><i style="width:40px;height:40px;border:2px solid #1E6B46;border-radius:12px;display:block"></i><i style="width:40px;height:40px;border:2px solid #1E6B46;border-radius:16px;display:block"></i><i style="width:40px;height:40px;border:2px solid #1E6B46;border-radius:20px;display:block"></i><i style="width:40px;height:40px;border:2px solid #1E6B46;border-radius:24px;display:block"></i><i style="width:64px;height:40px;border:2px solid #1E6B46;border-radius:999px;display:block"></i><span style="color:#4A5B51;font-size:14px">12, 16, 20, 24, pill</span></div>
+        <span style="color:#4A5B51;font-size:14px">Tap targets: 44 px minimum. Buttons 56, fields 54, steppers 52, chips and rows 44 to 72.</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <h2 style="margin:0;font-size:22px;font-weight:800">Hindi readiness</h2>
+      <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:20px;padding:20px 24px;display:flex;flex-direction:column;gap:12px">
+        <div style="font-size:26px;line-height:1.5;font-weight:700">सिर्फ ₹100 से निवेश शुरू करें</div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px">
+          <span style="display:inline-flex;align-items:center;min-height:56px;padding:12px 28px;border-radius:999px;background:#1E6B46;color:#FFFFFF;font-size:17px;line-height:1.6;font-weight:700">शुरू करें</span>
+          <span style="display:inline-flex;align-items:center;min-height:56px;padding:12px 28px;border-radius:999px;border:2px solid #1E6B46;color:#1E6B46;font-size:17px;line-height:1.6;font-weight:700">बाद में याद दिलाएँ</span>
+        </div>
+        <span style="font-size:14px;line-height:1.55;color:#4A5B51">Illustrative strings, to be reviewed by a native speaker. Buttons grow with their text, nothing has a fixed width, and line heights of 1.5 to 1.6 stop matras from clipping. Plan for about 30% longer strings.</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <h2 style="margin:0;font-size:22px;font-weight:800">Component list</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
+
+      <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:12px">
+        <div style="min-height:72px;display:flex;flex-direction:column;gap:8px;justify-content:center">
+          <span style="display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:999px;background:#1E6B46;color:#FFFFFF;font-weight:700">Continue</span>
+          <span style="display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:999px;border:2px solid #1E6B46;color:#1E6B46;font-weight:700;box-sizing:border-box">Remind me later</span>
+        </div>
+        <div><strong>Button</strong><div style="font-size:14px;line-height:1.5;color:#4A5B51">&lt;button&gt; or &lt;a&gt;. Primary and ghost. 56 px on screens.</div></div>
+      </div>
+
+      <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:12px">
+        <div style="min-height:72px;display:flex;flex-direction:column;gap:6px;justify-content:center">
+          <span style="font-size:14px;font-weight:700">PAN number</span>
+          <span style="display:flex;align-items:center;height:48px;padding:0 14px;border:2px solid #6F8176;border-radius:14px;color:#4A5B51;box-sizing:border-box">ABCDE1234F</span>
+        </div>
+        <div><strong>Field with “why we ask”</strong><div style="font-size:14px;line-height:1.5;color:#4A5B51">&lt;input&gt; plus &lt;label&gt;, right inputmode and autocomplete, error is a sentence with aria-invalid.</div></div>
+      </div>
+
+      <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:12px">
+        <div style="min-height:72px;display:flex;align-items:center;gap:12px;padding:0 12px;border:1.5px solid #1E6B46;background:#E6F2EA;border-radius:16px;box-sizing:border-box">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="#1E6B46"></rect><path d="M7.5 12.5l3 3 6-6.5" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span style="font-weight:700">PAN card</span>
+        </div>
+        <div><strong>Checklist row</strong><div style="font-size:14px;line-height:1.5;color:#4A5B51">&lt;input type=checkbox&gt; inside a &lt;label&gt;. The whole row is the tap target.</div></div>
+      </div>
+
+      <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:12px">
+        <div style="min-height:72px;display:flex;flex-direction:column;gap:12px;justify-content:center">
+          <div style="display:flex;gap:6px"><i style="flex:1;height:4px;border-radius:2px;background:#1E6B46"></i><i style="flex:1;height:4px;border-radius:2px;background:#1E6B46"></i><i style="flex:1;height:4px;border-radius:2px;background:#1E6B46"></i><i style="flex:1;height:4px;border-radius:2px;background:#D8E0DA"></i><i style="flex:1;height:4px;border-radius:2px;background:#D8E0DA"></i></div>
+          <span style="font-size:14px;font-weight:600;color:#4A5B51">3 of 5</span>
+        </div>
+        <div><strong>Progress pips</strong><div style="font-size:14px;line-height:1.5;color:#4A5B51">Five bars plus a text label. Exposed with role=img and a label.</div></div>
+      </div>
+
+      <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:12px">
+        <div style="min-height:72px;display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+          <span style="padding:6px 14px;border-radius:999px;background:#E6F2EA;color:#14502F;font-size:14px;font-weight:700">In progress</span>
+          <span style="padding:6px 14px;border-radius:999px;background:#FFF1CC;color:#6B4200;font-size:14px;font-weight:700">Taking longer</span>
+          <span style="padding:6px 14px;border-radius:999px;background:#1E6B46;color:#FFFFFF;font-size:14px;font-weight:700">Verified</span>
+        </div>
+        <div><strong>Status pill</strong><div style="font-size:14px;line-height:1.5;color:#4A5B51">&lt;span role=status&gt;. Always text, never colour alone.</div></div>
+      </div>
+
+      <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:12px">
+        <div style="min-height:72px;display:flex;align-items:center;gap:10px;padding:0 14px;background:#FFF1CC;color:#6B4200;border-radius:16px;font-size:14px;line-height:1.5;box-sizing:border-box">Before you invest: the value can go up and down.</div>
+        <div><strong>Callout</strong><div style="font-size:14px;line-height:1.5;color:#4A5B51">Info, risk and error variants. Error uses role=alert.</div></div>
+      </div>
+
+      <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:12px">
+        <div style="min-height:72px;display:flex;align-items:center;gap:8px">
+          <span style="width:48px;height:48px;border-radius:50%;border:2px solid #1E6B46;color:#1E6B46;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;box-sizing:border-box">−</span>
+          <span style="flex:1;height:52px;border:2px solid #6F8176;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;box-sizing:border-box">100</span>
+          <span style="width:48px;height:48px;border-radius:50%;border:2px solid #1E6B46;color:#1E6B46;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;box-sizing:border-box">+</span>
+        </div>
+        <div><strong>Amount stepper and chips</strong><div style="font-size:14px;line-height:1.5;color:#4A5B51">&lt;input&gt; and two &lt;button&gt;s. ₹100 minimum is enforced with a message.</div></div>
+      </div>
+
+      <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:12px">
+        <div style="min-height:72px;display:flex;flex-direction:column;gap:6px;justify-content:center">
+          <i style="display:block;height:14px;width:60%;border-radius:7px;background:#E3E8E5"></i><i style="display:block;height:14px;border-radius:7px;background:#E3E8E5"></i><i style="display:block;height:14px;width:45%;border-radius:7px;background:#E3E8E5"></i>
+        </div>
+        <div><strong>Skeleton and spinner</strong><div style="font-size:14px;line-height:1.5;color:#4A5B51">CSS gradient and a CSS ring. No images, no Lottie needed.</div></div>
+      </div>
+
+      <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:12px">
+        <div style="min-height:72px;display:flex;align-items:center;justify-content:center"><dc-import name="Mascot" pose="grow" size="68" hint-size="68px,68px"></dc-import></div>
+        <div><strong>Mascot</strong><div style="font-size:14px;line-height:1.5;color:#4A5B51">Inline SVG with four poses and CSS motion.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <h2 style="margin:0;font-size:22px;font-weight:800">Three-week build plan</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
+      <div style="background:#E6F2EA;border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:6px"><strong style="font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:#14502F">Week 1</strong><span style="font-size:15px;line-height:1.6">Tokens, type, shell, disclaimer bar, buttons, fields, mascot SVG. Homepage on mobile and desktop.</span></div>
+      <div style="background:#E6F2EA;border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:6px"><strong style="font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:#14502F">Week 2</strong><span style="font-size:15px;line-height:1.6">Screens 1 to 3: welcome, checklist with reminder, details form with validation and masking.</span></div>
+      <div style="background:#E6F2EA;border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:6px"><strong style="font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:#14502F">Week 3</strong><span style="font-size:15px;line-height:1.6">Screens 4 and 5, all verification states, notify-me, then an accessibility, 4G performance and Hindi pass.</span></div>
+    </div>
+    <p style="margin:0;font-size:14px;line-height:1.6;color:#4A5B51">Budget: page weight under 1.5 MB (one font family plus inline SVG, no images), animation CSS only and well under 100 KB, 6.2 s on 4G is the number to beat.</p>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1200,"height":2180}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

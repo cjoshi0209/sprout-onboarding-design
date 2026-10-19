@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sprout: mascot, colour, type and components</title>
+<style>
+:root{--bg:#FBF9F4;--ink:#12241A;--muted:#4A5B51;--primary:#1E6B46;--tint:#E6F2EA;--hair:#D8E0DA;--focus:#1A4FB8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 system-ui,-apple-system,"Segoe UI","Noto Sans","Noto Sans Devanagari",Roboto,Arial,sans-serif}
+main{max-width:1000px;margin:0 auto;padding:24px 20px 64px}
+h1{font-size:2rem;line-height:1.25;margin:0 0 4px}
+h2{font-size:1.375rem;margin:40px 0 12px;padding-top:16px;border-top:1px solid var(--hair)}
+h3{font-size:1rem;margin:0}
+p{margin:0 0 12px}
+.muted{color:var(--muted)}
+a{color:var(--primary)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+.card{background:#fff;border:1px solid var(--hair);border-radius:16px;padding:14px}
+.card svg{width:100%;max-width:140px;height:auto;display:block;margin:0 auto 8px}
+.sw{height:56px;border-radius:10px;border:1px solid rgba(0,0,0,.15);margin-bottom:8px}
+table{width:100%;border-collapse:collapse;background:#fff;font-size:.9375rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--hair);vertical-align:top}
+th{background:var(--tint)}
+.pass{font-weight:700;color:var(--primary)}
+.wrap{overflow-x:auto}
+code{background:var(--tint);padding:1px 6px;border-radius:6px;font-size:.9em}
+.sway-r,.sway-l{animation:sway 4.5s ease-in-out infinite alternate}.sway-l{animation-delay:-1.2s;animation-direction:alternate-reverse}
+.grow{transform-origin:60px 80px;animation:grow .9s cubic-bezier(.2,.8,.2,1) both}
+@keyframes sway{from{transform:rotate(-4deg)}to{transform:rotate(5deg)}}
+@keyframes grow{from{transform:scale(.4)}to{transform:scale(1)}}
+.static .sway-r,.static .sway-l,.static .grow{animation:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<main>
+<p><a href="index.html">← Back to the prototype</a></p>
+<h1>Sprout design spec</h1>
+<p class="muted">Mascot sheet, colour and type spec with contrast ratios, and the component list.</p>
+
+<h2>1. Mascot sheet</h2>
+<p>The mascot is a geometric mark: one circle, one half-disc of soil, one stem and two leaf shapes. No face, no limbs, no outline. It expresses feeling only through growth stage and a slow sway. Each pose is inline SVG (about 1 KB). Motion is CSS only: leaves sway ±5° over 4.5 s, and the stem grows in once (0.9 s). Total animation payload is under 1 KB of CSS, against a 100 KB budget.</p>
+<h3 style="margin-bottom:8px">Animated poses (as used in the prototype)</h3>
+<div class="grid" id="poses"></div>
+<h3 style="margin:24px 0 8px">Static fallback (animation dropped, or <code>prefers-reduced-motion</code>)</h3>
+<p class="muted">The same SVG with animation switched off. Nothing else changes, so there is no second asset to maintain.</p>
+<div class="grid static" id="poses-static"></div>
+<div class="wrap" style="margin-top:20px"><table>
+<tr><th>Pose</th><th>Where it appears</th><th>What it says</th></tr>
+<tr><td>Seed</td><td>Verification: empty state</td><td>Nothing has started yet</td></tr>
+<tr><td>Sprout</td><td>Welcome, loading, error</td><td>Just beginning, still here</td></tr>
+<tr><td>Grow</td><td>Homepage, verification in progress</td><td>Steady progress</td></tr>
+<tr><td>Done</td><td>Verified, first investment placed</td><td>"I've got this": taller, with a small amber bud</td></tr>
+</table></div>
+
+<h2>2. Colour</h2>
+<div class="grid" id="swatches"></div>
+<p class="muted" style="margin-top:12px">Contrast ratios are calculated with the WCAG 2.x relative-luminance formula. Body text needs 4.5:1, large text (24px, or 19px bold) and UI components need 3:1.</p>
+<div class="wrap"><table id="contrast">
+<tr><th>Pair (foreground on background)</th><th>Use</th><th>Ratio</th><th>Needs</th><th>Result</th></tr>
+</table></div>
+<p class="muted" style="margin-top:12px">Amber <code>#F2B84B</code> is used only for the mascot's bud, which is decorative and never carries meaning on its own, so it is not in the table.</p>
+
+<h2>3. Type</h2>
+<div class="wrap"><table>
+<tr><th>Style</th><th>Size / line height</th><th>Weight</th><th>Used for</th></tr>
+<tr><td>Display</td><td>48 / 1.2 desktop, 32 / 1.3 mobile</td><td>700</td><td>Homepage value statement</td></tr>
+<tr><td>H1</td><td>28 / 1.3</td><td>700</td><td>Every onboarding screen</td></tr>
+<tr><td>H2</td><td>20 / 1.4</td><td>700</td><td>Section titles</td></tr>
+<tr><td>Body</td><td>16 / 1.6</td><td>400</td><td>Copy, labels (labels 700)</td></tr>
+<tr><td>Small</td><td>14 / 1.5</td><td>400</td><td>"Why we ask" lines, hints</td></tr>
+<tr><td>Disclaimer</td><td>12 / 1.5</td><td>400</td><td>Risk disclaimer (the 12px minimum)</td></tr>
+</table></div>
+<p style="margin-top:12px"><b>Font stack:</b> <code>system-ui, "Segoe UI", "Noto Sans", "Noto Sans Devanagari", Roboto, Arial, sans-serif</code>. No web-font download, so the type costs 0 KB and renders at once on low-end devices. Hindi falls through to the device's Devanagari font.</p>
+
+<h2>4. Component list (standard, one front-end developer, 3 weeks)</h2>
+<div class="wrap"><table>
+<tr><th>Component</th><th>Native element</th><th>Notes</th></tr>
+<tr><td>Button (primary, ghost)</td><td><code>&lt;button&gt;</code> / <code>&lt;a&gt;</code></td><td>48px min height, pill, full width on mobile</td></tr>
+<tr><td>Text field with "why we ask" line</td><td><code>&lt;input&gt;</code> + <code>&lt;label&gt;</code></td><td>52px height, correct <code>inputmode</code> and <code>autocomplete</code></td></tr>
+<tr><td>Inline error message</td><td>text + <code>aria-invalid</code></td><td>Never colour alone: always a sentence</td></tr>
+<tr><td>Checklist item</td><td><code>&lt;input type=checkbox&gt;</code></td><td>Whole row is the tap target</td></tr>
+<tr><td>Radio list (reminder)</td><td><code>&lt;fieldset&gt;</code> radios</td><td>44px rows</td></tr>
+<tr><td>Segmented progress bar</td><td><code>role=progressbar</code></td><td>3 steps, text label alongside</td></tr>
+<tr><td>Status pill</td><td><code>&lt;span role=status&gt;</code></td><td>In progress, taking longer, verified</td></tr>
+<tr><td>Step list with spinner</td><td><code>&lt;ol&gt;</code></td><td>CSS spinner, no image</td></tr>
+<tr><td>Skeleton</td><td>CSS gradient</td><td>Loading state</td></tr>
+<tr><td>Callout (info, warning, error)</td><td><code>&lt;div&gt;</code></td><td>Icon plus text, error uses <code>role=alert</code></td></tr>
+<tr><td>Amount stepper + chips</td><td><code>&lt;input&gt;</code> + buttons</td><td>48px steppers, 44px chips, minimum ₹100 enforced</td></tr>
+<tr><td>Card</td><td><code>&lt;div&gt;</code></td><td>Explainer and fund summary</td></tr>
+<tr><td>Disclaimer bar</td><td>fixed footer, <code>role=note</code></td><td>One shared component on every screen</td></tr>
+<tr><td>Toast</td><td><code>role=status</code></td><td>Confirmation messages</td></tr>
+<tr><td>Mascot</td><td>inline SVG + CSS</td><td>One function, four poses</td></tr>
+</table></div>
+<p class="muted" style="margin-top:12px">No framework is required. The prototype is one HTML file with no external requests.</p>
+</main>
+<script>
+const LEAF_R='M0 0C0-18 20-24 34-18C34-2 18 8 0 0Z', LEAF_L='M0 0C0-18-20-24-34-18C-34-2-18 8 0 0Z';
+function mascot(pose){
+  const P={seed:{top:70,s:0,seed:1},sprout:{top:60,s:.55},grow:{top:46,s:1},done:{top:40,s:1.1,bud:1}}[pose],y=P.top;
+  let g='<circle cx="60" cy="60" r="58" fill="#E6F2EA"/><path d="M28 92A32 15 0 0 1 92 92Z" fill="#12241A"/>';
+  if(P.seed) g+='<circle cx="60" cy="72" r="8" fill="#1E6B46"/>';
+  else{g+='<g class="grow"><path d="M60 80V'+y+'" stroke="#1E6B46" stroke-width="5" stroke-linecap="round" fill="none"/><g transform="translate(60 '+(y+4)+') scale('+P.s+')"><g class="sway-r"><path d="'+LEAF_R+'" fill="#2E8B50"/></g><g class="sway-l"><path d="'+LEAF_L+'" fill="#2E8B50"/></g></g>';
+    if(P.bud) g+='<circle cx="60" cy="'+(y-8)+'" r="6" fill="#F2B84B"/>'; g+='</g>';}
+  return '<svg viewBox="0 0 120 120" role="img" aria-label="'+pose+' pose">'+g+'</svg>';
+}
+['seed','sprout','grow','done'].forEach(p=>{
+  ['poses','poses-static'].forEach(id=>{const d=document.createElement('div');d.className='card';d.innerHTML=mascot(p)+'<h3 style="text-align:center;text-transform:capitalize">'+p+'</h3>';document.getElementById(id).appendChild(d)})});
+const SW=[['Background','#FBF9F4'],['Surface','#FFFFFF'],['Tint','#E6F2EA'],['Ink','#12241A'],['Muted text','#4A5B51'],['Primary','#1E6B46'],['Primary dark','#14502F'],['Leaf','#2E8B50'],['Field border','#6F8176'],['Error','#B3261E'],['Warning text','#6B4200'],['Focus ring','#1A4FB8']];
+document.getElementById('swatches').innerHTML=SW.map(([n,h])=>'<div class="card"><div class="sw" style="background:'+h+'"></div><b>'+n+'</b><br><code>'+h+'</code></div>').join('');
+function L(h){const c=[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)/255).map(x=>x<=.03928?x/12.92:((x+.055)/1.055)**2.4);return .2126*c[0]+.7152*c[1]+.0722*c[2]}
+const cr=(a,b)=>{const x=L(a),y=L(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)};
+const PAIRS=[['Ink on background','#12241A','#FBF9F4','Body text',4.5],['Ink on white','#12241A','#FFFFFF','Body text on cards',4.5],['Muted on background','#4A5B51','#FBF9F4','Secondary text',4.5],['Muted on white','#4A5B51','#FFFFFF','Hints on cards',4.5],
+['White on primary','#FFFFFF','#1E6B46','Button label',4.5],['White on primary dark','#FFFFFF','#14502F','Button hover',4.5],['Primary on background','#1E6B46','#FBF9F4','Links, ghost button',4.5],['Primary on tint','#1E6B46','#E6F2EA','Eyebrow, chip text',4.5],['Ink on tint','#12241A','#E6F2EA','Callout text',4.5],
+['White on ink','#FFFFFF','#12241A','Risk disclaimer (12px)',4.5],['Error on background','#B3261E','#FBF9F4','Error text',4.5],['Error on error tint','#B3261E','#FDECEA','Error callout',4.5],['Warning on warning tint','#6B4200','#FFF1CC','Risk callout, "taking longer"',4.5],
+['Muted on disabled','#4A5B51','#E3E8E5','Disabled button label',4.5],['Field border on background','#6F8176','#FBF9F4','Input outline (UI component)',3],['Leaf on tint','#2E8B50','#E6F2EA','Mascot leaves (graphic)',3],['Focus ring on background','#1A4FB8','#FBF9F4','Keyboard focus',3]];
+const t=document.getElementById('contrast');
+PAIRS.forEach(([n,f,b,u,need])=>{const r=cr(f,b);t.insertAdjacentHTML('beforeend','<tr><td><code>'+f+'</code> on <code>'+b+'</code><br><span class="muted">'+n+'</span></td><td>'+u+'</td><td><b>'+r.toFixed(2)+':1</b></td><td>'+need+':1</td><td class="pass">'+(r>=need?'Pass':'FAIL')+'</td></tr>')});
+</script>
+</body>
+</html>

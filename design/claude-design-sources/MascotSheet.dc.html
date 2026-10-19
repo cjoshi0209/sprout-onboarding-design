@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mascot sheet</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width:1200px;height:1340px;box-sizing:border-box;padding:64px;background:#FBF9F4;color:#12241A;font-family:'Plus Jakarta Sans','Noto Sans Devanagari',system-ui,sans-serif;display:flex;flex-direction:column;gap:36px">
+
+  <div style="display:flex;flex-direction:column;gap:12px;max-width:860px">
+    <span style="font-size:14px;font-weight:700;color:#1E6B46;letter-spacing:0.07em;text-transform:uppercase">Mascot sheet</span>
+    <h1 style="margin:0;font-size:44px;line-height:1.1;font-weight:800;letter-spacing:-0.02em">A mark that grows, not a character that talks</h1>
+    <p style="margin:0;font-size:17px;line-height:1.65;color:#4A5B51">One continuous thread from homepage to first investment. It carries feeling only through growth stage and a slow sway, so it reads as a premium brand mark that happens to be friendly.</p>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <h2 style="margin:0;font-size:20px;font-weight:800">Poses used in the screens (with motion)</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px">
+      <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:24px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center"><dc-import name="Mascot" pose="seed" size="150" hint-size="150px,150px"></dc-import><strong style="font-size:17px">Seed</strong><span style="font-size:14px;line-height:1.5;color:#4A5B51">Verification: empty state</span></div>
+      <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:24px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center"><dc-import name="Mascot" pose="sprout" size="150" hint-size="150px,150px"></dc-import><strong style="font-size:17px">Sprout</strong><span style="font-size:14px;line-height:1.5;color:#4A5B51">Welcome, loading, error</span></div>
+      <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:24px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center"><dc-import name="Mascot" pose="grow" size="150" hint-size="150px,150px"></dc-import><strong style="font-size:17px">Grow</strong><span style="font-size:14px;line-height:1.5;color:#4A5B51">Homepage, in progress</span></div>
+      <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:24px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center"><dc-import name="Mascot" pose="done" size="150" hint-size="150px,150px"></dc-import><strong style="font-size:17px">Done</strong><span style="font-size:14px;line-height:1.5;color:#4A5B51">Verified, first investment placed</span></div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <h2 style="margin:0;font-size:20px;font-weight:800">Static fallback (animation dropped, or reduced motion on)</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px">
+      <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:24px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:6px"><dc-import name="Mascot" pose="seed" size="96" still="true" hint-size="96px,96px"></dc-import><span style="font-size:14px;color:#4A5B51">Seed, still</span></div>
+      <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:24px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:6px"><dc-import name="Mascot" pose="sprout" size="96" still="true" hint-size="96px,96px"></dc-import><span style="font-size:14px;color:#4A5B51">Sprout, still</span></div>
+      <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:24px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:6px"><dc-import name="Mascot" pose="grow" size="96" still="true" hint-size="96px,96px"></dc-import><span style="font-size:14px;color:#4A5B51">Grow, still</span></div>
+      <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:24px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:6px"><dc-import name="Mascot" pose="done" size="96" still="true" hint-size="96px,96px"></dc-import><span style="font-size:14px;color:#4A5B51">Done, still</span></div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <h2 style="margin:0;font-size:20px;font-weight:800">Built from five shapes</h2>
+    <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px">
+      <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:20px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+        <svg width="72" height="72" viewBox="0 0 120 120" role="img" aria-label="Disc"><circle cx="60" cy="60" r="58" fill="#E6F2EA" stroke="#6F8176" stroke-width="1.5"></circle></svg><strong style="font-size:15px">Disc</strong><span style="font-size:13px;line-height:1.45;color:#4A5B51">Tint, holds the mark</span>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:20px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+        <svg width="72" height="72" viewBox="0 0 120 120" role="img" aria-label="Soil"><path d="M26 93A34 16 0 0 1 94 93Z" fill="#12241A"></path></svg><strong style="font-size:15px">Soil</strong><span style="font-size:13px;line-height:1.45;color:#4A5B51">Half-disc in ink</span>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:20px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+        <svg width="72" height="72" viewBox="0 0 120 120" role="img" aria-label="Stem"><path d="M60 100V30" stroke="#1E6B46" stroke-width="5" stroke-linecap="round" fill="none"></path></svg><strong style="font-size:15px">Stem</strong><span style="font-size:13px;line-height:1.45;color:#4A5B51">5-unit round line</span>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:20px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+        <svg width="72" height="72" viewBox="0 0 120 120" role="img" aria-label="Right leaf"><g transform="translate(30 76) scale(1.6)"><path d="M0 0C0-18 20-24 34-18C34-2 18 8 0 0Z" fill="#2E8B50"></path></g></svg><strong style="font-size:15px">Leaf</strong><span style="font-size:13px;line-height:1.45;color:#4A5B51">Light green, right</span>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid #D8E0DA;border-radius:20px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+        <svg width="72" height="72" viewBox="0 0 120 120" role="img" aria-label="Left leaf"><g transform="translate(90 76) scale(1.6)"><path d="M0 0C0-18-20-24-34-18C-34-2-18 8 0 0Z" fill="#1E6B46"></path></g></svg><strong style="font-size:15px">Leaf</strong><span style="font-size:13px;line-height:1.45;color:#4A5B51">Dark green, left</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <h2 style="margin:0;font-size:20px;font-weight:800">Why it does not read as a cartoon</h2>
+      <ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.6;color:#4A5B51">
+        <li>No face, no limbs, no outline, no speech bubble.</li>
+        <li>Two greens plus ink. One amber bud, only in the Done pose.</li>
+        <li>Flat fills and true geometry: arcs and straight lines only.</li>
+        <li>It never talks. Copy always comes from the interface.</li>
+        <li>It doubles as the logo, so it stays a brand mark.</li>
+      </ul>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <h2 style="margin:0;font-size:20px;font-weight:800">Motion spec</h2>
+      <ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.6;color:#4A5B51">
+        <li>Leaves sway ±5° over 4.5 s, ease in-out, alternating.</li>
+        <li>The stem grows in once over 0.9 s.</li>
+        <li>CSS only. Each pose is about 1 KB of SVG, far under the 100 KB budget.</li>
+        <li>All motion stops under reduced-motion. That leaves the static poses above, so there is no second asset to maintain.</li>
+        <li>Minimum size 24 px. Clear space equal to the stem width on every side.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1200,"height":1340}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

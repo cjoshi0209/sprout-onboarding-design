@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Onboarding 4: Verification in progress</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}
+.back:hover{background:#E6F2EA}
+.back:focus-visible,.chip:focus-visible{outline:3px solid #1A4FB8;outline-offset:3px}
+</style>
+</helmet>
+<div style="position:relative;width:390px;height:844px;overflow:hidden;background:#FBF9F4;color:#12241A;font-family:'Plus Jakarta Sans','Noto Sans Devanagari',system-ui,sans-serif">
+
+  <div style="position:absolute;left:0;right:0;top:0;bottom:84px;overflow-y:auto;box-sizing:border-box;padding:0 20px 28px;display:flex;flex-direction:column;gap:16px">
+
+    <div style="display:flex;align-items:center;gap:6px;min-height:64px;margin-left:-8px">
+      <a class="back" href="Onboarding3.dc.html" aria-label="Back" style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="#12241A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </a>
+      <span style="font-size:19px;font-weight:800;letter-spacing:-0.01em">Sprout</span>
+      <span style="margin-left:auto;font-size:14px;font-weight:600;color:#4A5B51">4 of 5</span>
+    </div>
+
+    <div role="img" aria-label="Step 4 of 5" style="display:flex;gap:6px">
+      <i style="flex:1;height:4px;border-radius:2px;background:#1E6B46"></i><i style="flex:1;height:4px;border-radius:2px;background:#1E6B46"></i><i style="flex:1;height:4px;border-radius:2px;background:#1E6B46"></i><i style="flex:1;height:4px;border-radius:2px;background:#1E6B46"></i><i style="flex:1;height:4px;border-radius:2px;background:#D8E0DA"></i>
+    </div>
+
+    <div aria-live="polite" style="margin-top:4px">
+      <dc-import name="VerifyState" state="{{vstate}}" pad="0px" hint-size="100%,640px"></dc-import>
+    </div>
+
+    <fieldset style="margin:10px 0 0;padding:10px 12px 12px;border:2px dashed #6F8176;border-radius:16px">
+      <legend style="padding:0 6px;font-size:13px;font-weight:700;color:#4A5B51">Prototype: preview each state</legend>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <sc-for list="{{chips}}" as="c" hint-placeholder-count="6">
+          <button class="chip" type="button" aria-pressed="{{c.on}}" onClick="{{c.pick}}" style="min-height:44px;padding:8px 14px;border-radius:999px;cursor:pointer;border:2px solid {{c.border}};background:{{c.bg}};color:{{c.ink}};font:600 14px/1.3 'Plus Jakarta Sans','Noto Sans Devanagari',system-ui,sans-serif">{{c.label}}</button>
+        </sc-for>
+      </div>
+    </fieldset>
+  </div>
+
+  <div style="position:absolute;left:0;right:0;bottom:0">
+    <dc-import name="Disclaimer" hint-size="100%,84px"></dc-import>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { vstate: 'progress', touched: false }; }
+  componentDidMount() {
+    this.timer = setTimeout(() => { if (!this.state.touched) this.setState({ vstate: 'verified' }); }, 14000);
+  }
+  componentWillUnmount() { clearTimeout(this.timer); }
+  renderVals() {
+    const s = this.state;
+    const all = [['loading', 'Loading'], ['progress', 'In progress'], ['slow', 'Taking longer'], ['error', 'Error'], ['empty', 'Empty'], ['verified', 'Verified']];
+    return {
+      vstate: s.vstate,
+      chips: all.map(([k, l]) => ({
+        label: l, on: s.vstate === k,
+        bg: s.vstate === k ? '#12241A' : '#FFFFFF',
+        ink: s.vstate === k ? '#FFFFFF' : '#12241A',
+        border: s.vstate === k ? '#12241A' : '#6F8176',
+        pick: () => this.setState({ vstate: k, touched: true })
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

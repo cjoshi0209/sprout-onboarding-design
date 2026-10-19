@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sprout mascot</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+.sprout-sway-r{transform-origin:0 0;animation:sproutSwayR 4.5s ease-in-out infinite alternate}
+.sprout-sway-l{transform-origin:0 0;animation:sproutSwayL 4.5s ease-in-out -1.4s infinite alternate}
+.sprout-grow{transform-origin:60px 80px;animation:sproutGrow .9s cubic-bezier(.2,.8,.2,1) both}
+@keyframes sproutSwayR{from{transform:rotate(-4deg)}to{transform:rotate(5deg)}}
+@keyframes sproutSwayL{from{transform:rotate(4deg)}to{transform:rotate(-5deg)}}
+@keyframes sproutGrow{from{transform:scale(.4)}to{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.sprout-sway-r,.sprout-sway-l,.sprout-grow{animation:none}}
+.sprout-still .sprout-sway-r,.sprout-still .sprout-sway-l,.sprout-still .sprout-grow{animation:none}
+</style>
+</helmet>
+<div style="width: {{px}}; height: {{px}}; display: block; line-height: 0">
+<svg class="{{cls}}" viewBox="0 0 120 120" width="100%" height="100%" role="img" aria-label="{{label}}">
+  <circle cx="60" cy="60" r="58" fill="#E6F2EA"></circle>
+  <path d="M26 93A34 16 0 0 1 94 93Z" fill="#12241A"></path>
+  <sc-if value="{{isSeed}}" hint-placeholder-val="{{ false }}">
+    <circle cx="60" cy="73" r="8" fill="#1E6B46"></circle>
+  </sc-if>
+  <sc-if value="{{isSprout}}" hint-placeholder-val="{{ false }}">
+    <g class="sprout-grow">
+      <path d="M60 80V60" stroke="#1E6B46" stroke-width="5" stroke-linecap="round" fill="none"></path>
+      <g transform="translate(60 63) scale(0.55)">
+        <g class="sprout-sway-r"><path d="M0 0C0-18 20-24 34-18C34-2 18 8 0 0Z" fill="#2E8B50"></path></g>
+        <g class="sprout-sway-l"><path d="M0 0C0-18-20-24-34-18C-34-2-18 8 0 0Z" fill="#1E6B46"></path></g>
+      </g>
+    </g>
+  </sc-if>
+  <sc-if value="{{isGrow}}" hint-placeholder-val="{{ true }}">
+    <g class="sprout-grow">
+      <path d="M60 80V46" stroke="#1E6B46" stroke-width="5" stroke-linecap="round" fill="none"></path>
+      <g transform="translate(60 50)">
+        <g class="sprout-sway-r"><path d="M0 0C0-18 20-24 34-18C34-2 18 8 0 0Z" fill="#2E8B50"></path><path d="M3 -2C12 -9 20 -12 28 -13" stroke="#E6F2EA" stroke-opacity="0.55" stroke-width="1.5" stroke-linecap="round" fill="none"></path></g>
+        <g class="sprout-sway-l"><path d="M0 0C0-18-20-24-34-18C-34-2-18 8 0 0Z" fill="#1E6B46"></path><path d="M-3 -2C-12 -9 -20 -12 -28 -13" stroke="#E6F2EA" stroke-opacity="0.55" stroke-width="1.5" stroke-linecap="round" fill="none"></path></g>
+      </g>
+    </g>
+  </sc-if>
+  <sc-if value="{{isDone}}" hint-placeholder-val="{{ false }}">
+    <g class="sprout-grow">
+      <path d="M60 80V40" stroke="#1E6B46" stroke-width="5" stroke-linecap="round" fill="none"></path>
+      <g transform="translate(60 44) scale(1.1)">
+        <g class="sprout-sway-r"><path d="M0 0C0-18 20-24 34-18C34-2 18 8 0 0Z" fill="#2E8B50"></path><path d="M3 -2C12 -9 20 -12 28 -13" stroke="#E6F2EA" stroke-opacity="0.55" stroke-width="1.5" stroke-linecap="round" fill="none"></path></g>
+        <g class="sprout-sway-l"><path d="M0 0C0-18-20-24-34-18C-34-2-18 8 0 0Z" fill="#1E6B46"></path><path d="M-3 -2C-12 -9 -20 -12 -28 -13" stroke="#E6F2EA" stroke-opacity="0.55" stroke-width="1.5" stroke-linecap="round" fill="none"></path></g>
+      </g>
+      <circle cx="60" cy="31" r="6" fill="#F2B84B"></circle>
+    </g>
+  </sc-if>
+</svg>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"pose":{"editor":"enum","default":"grow","options":["seed","sprout","grow","done"]},"size":{"editor":"int","default":120,"min":16,"max":600,"unit":"px"},"still":{"editor":"boolean","default":false},"$preview":{"width":160,"height":160}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const pose = this.props.pose || 'grow';
+    const size = Number(this.props.size) || 120;
+    const names = { seed: 'a seed on the soil', sprout: 'a seedling just breaking the soil', grow: 'a seedling with two leaves', done: 'a grown seedling with a small bud' };
+    return {
+      px: size + 'px',
+      cls: (this.props.still === true || this.props.still === 'true') ? 'sprout-still' : '',
+      label: 'Sprout mark: ' + (names[pose] || names.grow),
+      isSeed: pose === 'seed',
+      isSprout: pose === 'sprout',
+      isGrow: pose === 'grow',
+      isDone: pose === 'done'
+    };
+  }
+}
+</script>
+</body>
+</html>

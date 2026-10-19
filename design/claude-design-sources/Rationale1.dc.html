@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rationale, page 1</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width:1240px;height:1754px;box-sizing:border-box;padding:88px 96px 72px;background:#FFFFFF;color:#12241A;font-family:'Plus Jakarta Sans','Noto Sans Devanagari',system-ui,sans-serif;display:flex;flex-direction:column;gap:34px">
+
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;border-bottom:2px solid #12241A;padding-bottom:20px">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <span style="font-size:15px;font-weight:700;color:#1E6B46;letter-spacing:0.07em;text-transform:uppercase">Design rationale</span>
+      <h1 style="margin:0;font-size:46px;line-height:1.08;font-weight:800;letter-spacing:-0.02em">Sprout: from “this is scary” to “I’ve got this”</h1>
+    </div>
+    <span style="font-size:15px;color:#4A5B51;font-weight:600;white-space:nowrap">Page 1 of 2</span>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <h2 style="margin:0;font-size:24px;line-height:1.3;font-weight:800">1. The story</h2>
+    <p style="margin:0;font-size:17px;line-height:1.7;color:#4A5B51">One continuous journey, with the homepage as screen zero. Existing users told us investing feels scary (65%, n=40), most people leave the homepage (78% bounce), and 62% drop off in KYC. So each screen does one job: lower one specific fear, then hand over to the next.</p>
+    <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px">
+      <div style="background:#E6F2EA;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:6px"><strong style="font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:#14502F">Homepage</strong><span style="font-size:15px;line-height:1.55"><b>Curious, wary.</b> One promise (₹100, your pace), one button, three small steps.</span></div>
+      <div style="background:#E6F2EA;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:6px"><strong style="font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:#14502F">1 and 2</strong><span style="font-size:15px;line-height:1.55"><b>Prepared.</b> A plain list of what to have ready, and a real way to pause.</span></div>
+      <div style="background:#E6F2EA;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:6px"><strong style="font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:#14502F">3 Details</strong><span style="font-size:15px;line-height:1.55"><b>Understood.</b> Every field says why we ask it.</span></div>
+      <div style="background:#E6F2EA;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:6px"><strong style="font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:#14502F">4 Verifying</strong><span style="font-size:15px;line-height:1.55"><b>Reassured.</b> A named status, honest timing, and a way to be told.</span></div>
+      <div style="background:#E6F2EA;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:6px"><strong style="font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:#14502F">5 Start small</strong><span style="font-size:15px;line-height:1.55"><b>In control.</b> ₹100 minimum, the user picks, risk said plainly.</span></div>
+    </div>
+    <p style="margin:0;font-size:17px;line-height:1.7;color:#4A5B51">The mascot grows with the user: a seed when nothing has started, a sprout at welcome, two leaves while work is under way, and a small bud once they are verified and invested. The same mark is the logo, so it is the thread that links the homepage to the last screen.</p>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <h2 style="margin:0;font-size:24px;line-height:1.3;font-weight:800">2. How the mascot avoids looking like a cartoon</h2>
+    <p style="margin:0;font-size:17px;line-height:1.7;color:#4A5B51">It is a mark, not a character. It is built from five shapes: a disc, a half-disc of soil, a stem and two leaves. There is no face, no limbs, no outline and no speech bubble. It uses two greens plus ink, with a single amber bud used only when the user is done. Motion is a slow sway (±5° over 4.5 s) and a one-time grow-in, all CSS; with animation off, or when the user prefers reduced motion, the same SVG is simply held still. It never talks, because the interface carries every word. The full construction and the static fallback are on the mascot sheet.</p>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <h2 style="margin:0;font-size:24px;line-height:1.3;font-weight:800">3. Stakeholder decisions</h2>
+    <div style="border-left:0;background:#FBF9F4;border:1px solid #D8E0DA;border-radius:20px;padding:24px 28px;display:flex;flex-direction:column;gap:8px">
+      <strong style="font-size:18px">The CEO: premium, minimal, no cartoons</strong>
+      <p style="margin:0;font-size:17px;line-height:1.7;color:#4A5B51"><b style="color:#12241A">Asked for</b> a premium, minimal look and no cartoons. <b style="color:#12241A">What I did:</b> a warm paper ground, deep forest green, hairline borders and generous space, one button per screen, no stock illustration, and a geometric mark instead of a character. <b style="color:#12241A">Why:</b> premium in a first-time investor’s eyes means calm and trustworthy, not decorated. Minimal also helps the 6.2 s load on 4G, because there are no images, one font family and CSS-only motion.</p>
+    </div>
+    <div style="background:#FBF9F4;border:1px solid #D8E0DA;border-radius:20px;padding:24px 28px;display:flex;flex-direction:column;gap:8px">
+      <strong style="font-size:18px">Marketing: mascot, video, live ticker, three pop-ups, referral banner</strong>
+      <p style="margin:0;font-size:17px;line-height:1.7;color:#4A5B51"><b style="color:#12241A">Asked for</b> five attention-grabbers on the homepage. <b style="color:#12241A">What I did:</b> kept the mascot (as the mark above) and cut the rest from the homepage. The live ticker is cut because moving prices invite checking and panic, the opposite of the arc we want, and it needs a data feed that adds weight. The three pop-ups are cut because 78% of visitors already leave and each interruption is a new reason to. The video is cut because it is the heaviest asset for the 40% of users on devices under ₹10,000; it can return later as an optional, lightweight “see how it works” behind a poster image. The referral banner moves to one low-priority line on the final “first step is in” screen, where a happy user might act on it and nobody is distracted from starting. <b style="color:#12241A">Why:</b> the goal is the first investment, so every homepage element has to earn its place against one path to start.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:auto;display:flex;justify-content:space-between;font-size:13px;color:#4A5B51;border-top:1px solid #D8E0DA;padding-top:14px"><span>Sprout · onboarding design</span><span>Palette, type and copy are proposals for review</span></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1240,"height":1754}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
